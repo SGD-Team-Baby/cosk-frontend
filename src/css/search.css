@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp');
+
+.search-input {
+    border: 0px solid #A1A1A1;
+}
+
+.search-input input {
+    border: 1px solid #A1A1A1;
+    background-color: rgba(255, 255, 255, 190);
+}
+
+.search-input input[type=text]::placeholder {
+    font-family: 'Material Icons Outlined';
+    font-size: large;
+    transform: translateY(0.2em);
+    color: #A1A1A1;
+}
