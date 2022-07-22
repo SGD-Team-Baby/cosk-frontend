@@ -5,13 +5,8 @@ import {Container, Navbar, Stack} from "react-bootstrap";
 import '../css/material.css'
 import '../css/search.css'
 import Guest from "./user/Guest";
-import LoginForm from "./login/LoginForm";
 
 export default class NavBar extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const shadow = this.props.transparent ? "" : "shadow-sm"
@@ -22,7 +17,7 @@ export default class NavBar extends React.Component {
             <div>
                 <Navbar bg={backgroundState} variant={textState} fixed="top" className={shadow}>
                     <Container className="align-content-center">
-                        <Navbar.Brand href="#home">
+                        <Navbar.Brand href="/">
                             <Stack direction="horizontal" gap="3">
                                 <Logo />
                                 <LogoText textStyle={`text-${textState}`}/>
@@ -46,16 +41,6 @@ export default class NavBar extends React.Component {
             </div>
 
         );
-    }
-}
-
-function Login(props) {
-    const show = props.show;
-
-    if(show) {
-        return <LoginForm />
-    } else {
-        return <></>
     }
 }
 

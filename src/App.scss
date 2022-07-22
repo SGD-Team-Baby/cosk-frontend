@@ -12,5 +12,7 @@ $border-radius-lg: 1rem;
 
 $box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .03);
 
+$accordion-border-radius: $border-radius-lg;
+
   /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";

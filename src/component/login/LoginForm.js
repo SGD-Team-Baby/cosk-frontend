@@ -1,17 +1,5 @@
 import React from "react";
-import {Button, Form, ModalBody} from "react-bootstrap";
-import FormCheckLabel from "react-bootstrap/FormCheckLabel";
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-    },
-};
+import {Button, Form} from "react-bootstrap";
 
 export default class LoginForm extends React.Component {
     render() {

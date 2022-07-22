@@ -1,41 +1,35 @@
-import React from "react";
-import {Stack, Nav, Button, OverlayTrigger, Tooltip, Popover} from "react-bootstrap";
-import Logo from "../logo/ImageLogo";
-import LogoText from "../logo/TextLogo";
+import React, {useState} from "react";
+import {Stack, Nav, Button, OverlayTrigger, Popover} from "react-bootstrap";
 import LoginForm from "../login/LoginForm";
+import {useNavigate} from "react-router-dom";
 
-export default class Guest extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.handleLoginPopup = this.handleLoginPopup.bind(this)
-        this.state = {loginPopupOpened: false}
+export default function Guest(props) {
+    const [loginPopupOpened, setLoginPopupOpened] = useState(false);
+    const navigate = useNavigate()
+
+    const handleLoginPopup = () => {
+        setLoginPopupOpened(!loginPopupOpened)
     }
 
-    handleLoginPopup() {
-        this.setState({loginPopupOpened: !this.state.loginPopupOpened})
-    }
+    return (
+        <div>
+            <Stack direction="horizontal" gap="3">
+                <OverlayTrigger
+                    trigger="click"
+                    show={loginPopupOpened}
+                    overlay={
+                        <Popover className="bg-transparent">
+                            <LoginForm/>
+                        </Popover>
+                    }
+                    placement="bottom">
 
-    render() {
-        return (
-            <div>
-                <Stack direction="horizontal" gap="3">
-                    <OverlayTrigger
-                        trigger="click"
-                        show={this.state.loginPopupOpened}
-                        overlay={
-                            <Popover className="bg-transparent">
-                                <LoginForm />
-                            </Popover>
-                        }
-                        placement="bottom">
+                    <Nav.Link className={props.textStyle} onClick={handleLoginPopup}>로그인</Nav.Link>
+                </OverlayTrigger>
 
-                        <Nav.Link className={this.props.textStyle} onClick={this.handleLoginPopup}>로그인</Nav.Link>
-                    </OverlayTrigger>
-
-                    <Button className="rounded-pill text-white">가입하기</Button>
-                </Stack>
-            </div>
-        );
-    }
+                <Button className="rounded-pill text-white" onClick={() => {navigate("/signup")}}>가입하기</Button>
+            </Stack>
+        </div>
+    )
 }
