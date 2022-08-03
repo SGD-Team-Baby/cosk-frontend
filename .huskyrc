@@ -1,5 +1,0 @@
-{
-    "hooks": {
-        "pre-commit": "echo 'Hello 응애, woof!'"
-    }
-}
