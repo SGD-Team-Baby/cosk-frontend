@@ -1,11 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-/**
- * <MarkdownTextBlock text="" />
- * @param props
- * @constructor
- */
 export default function MarkdownTextBlock({text}) {
 
 
