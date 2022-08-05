@@ -4,6 +4,7 @@ import TopInfo from "./blocks/normal/TopInfo";
 import MarkdownTextBlock from "./blocks/normal/MarkdownTextBlock";
 import NavBar from "../NavBar";
 import SignupForm from "../signup/SignupForm";
+import ImageBlock from "./blocks/normal/ImageBlock";
 
 
 /**
@@ -25,7 +26,7 @@ export default function Post({user, title, contents, comments, favorites, time})
             <div className="container justify-content-center" style={{marginTop: "7rem"}}>
                 <TopInfo title={title} name={user.name} time={time} favorites={favorites}/>
                 <div className="container pt-3 border-top" style={{height:"0.1rem"}}></div>
-                <MarkdownTextBlock text={"* ㅁㄴㅇㄹ"}/>
+                <ImageBlock src="https://source.unsplash.com/random" description="Unsplach Random Image" />
             </div>
 
         </div>
