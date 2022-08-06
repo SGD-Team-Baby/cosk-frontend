@@ -62,17 +62,35 @@ export default function BoardList() {
         )
     }
     else if(!error && !loading) {
-        return (
+        let length = data['data'].length;
+        if(length >= 5) {
+            return (
+                <ListGroup className="rounded-3 shadow-lg mt-4">
+                    {
+                        data['data'].slice(0, 5).map((item) => (
+                            <ListGroup.Item key={item.id} className="ps-4">
+                                <h4 className="mt-3">{item.title}</h4>
+                                <p>{item.body}</p>
+                                <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
+                            </ListGroup.Item>
+                        ))}
+                </ListGroup>
+            );
+        }
+        else{
+            return(
             <ListGroup className="rounded-3 shadow-lg mt-4">
-                {data['data'].map((item) => (
-                    <ListGroup.Item key={item.id} className="ps-4">
-                        <h4 className="mt-3">{item.title}</h4>
-                        <p>{item.body}</p>
-                        <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
-                    </ListGroup.Item>
-                ))}
+                {
+                    data['data'].map((item) => (
+                        <ListGroup.Item key={item.id} className="ps-4">
+                            <h4 className="mt-3">{item.title}</h4>
+                            <p>{item.body}</p>
+                            <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
+                        </ListGroup.Item>
+                    ))}
             </ListGroup>
-        );
+            );
+        }
     }
     else {
         return (<ListGroup className="rounded-3 shadow-lg mt-4">
