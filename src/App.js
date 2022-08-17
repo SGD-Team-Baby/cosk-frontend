@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Main from "./page/Main"
 import Signup from "./page/Signup";
 import NotFound from "./page/error/404";
-import Post from "./component/post/Post";
+import Post from "./page/Post";
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Main />} />
                     <Route path="/signup" element={<Signup />} />
-                    <Route path="/post" element={<Post user={{name: "asdf"}} title="이건 좀 너무한거 아니냐고 야발" favorites="4" time="2022년 8월 5일 금요일 오후 11:58"/>} />
+                    <Route path="/post/:id" element={<Post />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
