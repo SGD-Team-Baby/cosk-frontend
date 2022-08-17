@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Accordion, Button, Container, Form, Spinner} from "react-bootstrap";
-
+import instance from "../../ConstantValue";
 const validEmailRegex = new RegExp(
     '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
 );
@@ -127,6 +127,22 @@ function SignupInputForm(props) {
                         //여기에 이메일 인증 전송 요청
                         props.setSentEmail(email)
 
+                        console.log(email, password, password, name);
+                        const url = 'http://132.226.225.49/account/registration';
+
+                        instance.post(url,
+                            {
+                                'name':name,
+                                'email':email,
+                                'password1':password,
+                                'password2':password,
+                            })
+                            .then(function (response) {
+                                console.log(response.data);
+                            })
+                            .catch(function (error){
+                                console.log(error.response.data);
+                            })
                     }}
             >이메일 인증하고 COSK 이용하기</Button>
         </Container>
