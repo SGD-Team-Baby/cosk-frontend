@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Main from "./page/Main"
 import Signup from "./page/Signup";
 import NotFound from "./page/error/404";
+import Post from "./page/Post";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Main />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/post/:id" element={<Post />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
