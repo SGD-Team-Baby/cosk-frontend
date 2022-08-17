@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TopInfo({title, name, time, favorites}) {
+export default function PostInfo({title, name, time, favorites}) {
     return (
         <div>
             <link rel="stylesheet"
