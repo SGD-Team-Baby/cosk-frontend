@@ -9,18 +9,6 @@ export default function BoardList() {
     const [loading, setLoading] = useState(true)
     const token = "AAAAAAAAAA";
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const result = await axios('http://127.0.0.1:8000/post/list/', {headers:{'Authentication' : `Bearer ${token}`}});
-    //
-    //         setData(result.data);
-    //         console.log(typeof result.data);
-    //         console.log(result.data);
-    //     };
-    //
-    //     fetchData();
-    // }, []);
-
 
     useEffect(() => {
         let completed = false;
@@ -52,54 +40,54 @@ export default function BoardList() {
     }, []);
 
     if(loading){
-        return (<ListGroup className="rounded-3 shadow-lg mt-4">
-                <ListGroup.Item key={-1} className="ps-4">
-                    <h4 className="mt-3"> </h4>
-                    <p>불러오는 중입니다.</p>
-                    <p className="text-primary" style={{fontSize: "0.8rem"}}> </p>
-                </ListGroup.Item>
-            </ListGroup>
-        )
+        return decorateString("불러오는 중 입니다.");
     }
     else if(!error && !loading) {
         let length = data['data'].length;
-        if(length >= 5) {
-            return (
-                <ListGroup className="rounded-3 shadow-lg mt-4">
-                    {
-                        data['data'].slice(0, 5).map((item) => (
-                            <ListGroup.Item key={item.id} className="ps-4">
-                                <h4 className="mt-3">{item.title}</h4>
-                                <p>{item.body}</p>
-                                <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
-                            </ListGroup.Item>
-                        ))}
-                </ListGroup>
-            );
-        }
-        else{
-            return(
-            <ListGroup className="rounded-3 shadow-lg mt-4">
-                {
-                    data['data'].map((item) => (
-                        <ListGroup.Item key={item.id} className="ps-4">
-                            <h4 className="mt-3">{item.title}</h4>
-                            <p>{item.body}</p>
-                            <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
-                        </ListGroup.Item>
-                    ))}
-            </ListGroup>
-            );
-        }
+        return decorate(data, length);
     }
     else {
-        return (<ListGroup className="rounded-3 shadow-lg mt-4">
-                <ListGroup.Item key={-1} className="ps-4">
-                    <h4 className="mt-3"> </h4>
-                    <p>게시물이 없습니다.</p>
-                    <p className="text-primary" style={{fontSize: "0.8rem"}}> </p>
-                </ListGroup.Item>
-            </ListGroup>
-        )
+        return decorateString("게시물이 없습니다.");
     }
 };
+
+
+function decorateTags(arr){
+    if (arr.length === 0){
+        return [String.fromCharCode(1600)]
+    }
+    return arr.map((tag) => (
+        '#' + tag + ' '
+    ));
+}
+
+function decorate(data, length)
+{
+    if(length > 5)
+        length = 5;
+    return (
+        <ListGroup className="rounded-3 shadow-lg mt-4">
+            {
+                data['data'].slice(0, length).map((item) => (
+                    <ListGroup.Item key={item.id} className="ps-4">
+                        <h4 className="mt-3">{item.title}</h4>
+                        <p>{item.body}</p>
+                        <p className="text-primary" style={{fontSize: "0.8rem"}}>
+                            {decorateTags(item.tags)}
+                        </p>
+                    </ListGroup.Item>
+                ))}
+        </ListGroup>
+    );
+}
+
+function decorateString(string){
+    return (<ListGroup className="rounded-3 shadow-lg mt-4">
+            <ListGroup.Item key={-1} className="ps-4">
+                <h4 className="mt-3"> </h4>
+                <p>{string}</p>
+                <p className="text-primary" style={{fontSize: "0.8rem"}}> </p>
+            </ListGroup.Item>
+        </ListGroup>
+    )
+}
