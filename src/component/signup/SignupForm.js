@@ -6,8 +6,14 @@ const validEmailRegex = new RegExp(
 );
 
 
+const validEmailRegex = new RegExp(
+    '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+);
+
+
 export default function SignupForm() {
     const [sentEmail, setSentEmail] = useState("")
+
 
     if(sentEmail === "") {
         return <SignupInputForm setSentEmail={setSentEmail}/>
@@ -143,6 +149,7 @@ function SignupInputForm(props) {
                             .catch(function (error){
                                 console.log(error.response.data);
                             })
+
                     }}
             >이메일 인증하고 COSK 이용하기</Button>
         </Container>
