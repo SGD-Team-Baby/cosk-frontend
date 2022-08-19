@@ -6,7 +6,9 @@ const instance = axios.create({
 });
 
 export const URLVALUE = {
-    postList:"post/list"
+    postList:"post/list",
+    registration:'account/registration'
+
 }
 
 
