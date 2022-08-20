@@ -5,12 +5,6 @@ const validEmailRegex = new RegExp(
     '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
 );
 
-
-const validEmailRegex = new RegExp(
-    '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
-);
-
-
 export default function SignupForm() {
     const [sentEmail, setSentEmail] = useState("")
 
