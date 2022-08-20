@@ -107,7 +107,7 @@ export default function Editor() {
     })
 
     useEffect(() => {
-        addBlock(0, "md")
+        addBlock(0, "text")
     }, []);
 
     return (
@@ -128,7 +128,7 @@ export default function Editor() {
                 {
                     blocks.map((block, index) => {
                         switch (block.type) {
-                            case "md":
+                            case "text":
                                 return (
                                     <div key={block.uuid} ref={(el) => blockRef.current[index] = el}>
                                         <MarkdownEditorBlock
@@ -240,6 +240,7 @@ export default function Editor() {
 
                 <Button className="btn-lg btn-primary text-white mt-3"
                 onClick={() => {
+                    console.log(blocks);
                     //여기에 업로드 구현
                 }}>업로드</Button>
 
