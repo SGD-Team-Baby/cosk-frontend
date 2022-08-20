@@ -36,7 +36,7 @@ export default function Post() {
                 {
                     post.contents.map(content => {
                         switch (content.type) {
-                            case "markdown":
+                            case "text":
                                 return <MarkdownTextBlock text={content.text}/>
                             case "image":
                                 return <ImageBlock src={content.text} description={content.options}/>

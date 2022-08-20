@@ -6,7 +6,7 @@ export default function BoardList() {
     const url = "http://127.0.0.1:8000/post/list/"
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
     const token = "AAAAAAAAAA";
 
 
@@ -69,7 +69,8 @@ function decorate(data, length)
         <ListGroup className="rounded-3 shadow-lg mt-4">
             {
                 data['data'].slice(0, length).map((item) => (
-                    <ListGroup.Item key={item.id} className="ps-4">
+
+                    <ListGroup.Item action href={`/post/${item.id}`} key={item.id} className="ps-4">
                         <h4 className="mt-3">{item.title}</h4>
                         <p>{item.body}</p>
                         <p className="text-primary" style={{fontSize: "0.8rem"}}>

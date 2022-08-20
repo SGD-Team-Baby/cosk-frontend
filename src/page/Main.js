@@ -64,8 +64,11 @@ export default function Main() {
                         </ToggleButton>
                     </ToggleButtonGroup>
                 </div>
-                <BoardList/>
 
+
+                <ListGroup className="rounded-3 shadow-lg mt-4">
+                    <BoardList/>
+                </ListGroup>
 
                 <div style={{display: "flex", width: "100%"}}>
                     <a className="text-primary justify-content-end m-4">더보기 ></a>
