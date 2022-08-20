@@ -39,7 +39,9 @@ export default function BoardList(props) {
     }, []);
 
     if(!error && !loading) {
-        let length = props.limitLength || data['data'].length;
+        let length = data['data'].length;
+        if(props.limitLength < data['data'].length)
+            length = props.limitLength;
 
         return (
             <ListGroup className="rounded-3 shadow-lg mt-4">
