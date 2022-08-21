@@ -1,4 +1,5 @@
 import instance from "../../ConstantValue";
+import { removeToken, setToken} from "../TokenService";
 
 export async function login(email, password) {
     return instance.post("/account/login",
@@ -12,20 +13,14 @@ export async function login(email, password) {
         .then(function (response) {
             // console.log(response)
             // console.log(response.status)
-            saveToken(response.data.access_token);
+            setToken(response.data.access_token);
 
         });
 
 }
 
 export function logout(){
-    sessionStorage.removeItem("token");
-}
+    removeToken();
 
-export function getToken(){
-    sessionStorage.getItem("token");
-}
-function saveToken(token){
-    sessionStorage.setItem("token", token);
 }
 
