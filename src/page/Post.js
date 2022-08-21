@@ -22,10 +22,6 @@ export default function Post() {
     const params = useParams()
     const post = useGetPost(params.id)
 
-    post.tags = [
-        "asdf", "asdfklj"
-    ]
-
     return (
         <div>
             <NavBar
