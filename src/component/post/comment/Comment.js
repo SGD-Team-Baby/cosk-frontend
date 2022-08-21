@@ -13,12 +13,14 @@ export default function Comment({username, time, content, comments, allowComment
                         setCommentOpened(!commentOpened)
                     }} style={{cursor: "pointer"}}>
                         {
-                            commentOpened ? "답글 접기" : `답글 ${comments.length}개 보기`
+                            commentOpened ? "답글 접기" : `답글 ${
+                                Array.isArray(comments) ? comments.length : 0
+                            }개 보기`
                         }
                     </div>
                     : <div className="pb-4"></div>
             }
-            {commentOpened && comments.map(comment => {
+            {commentOpened && Array.isArray(comments) && comments.map(comment => {
                 return (
                     <div className="ps-3">
                         <Comment
