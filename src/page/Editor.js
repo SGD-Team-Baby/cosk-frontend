@@ -12,6 +12,7 @@ import AddButton from "../component/editor/AddButton";
 import CodeEditorBlock from "../component/editor/CodeEditorBlock";
 import TagBlock from "../component/editor/TagBlock";
 import {Button} from "react-bootstrap";
+import CreatePost from "../service/post/CreatePost";
 
 export default function Editor() {
 
@@ -240,7 +241,7 @@ export default function Editor() {
 
                 <Button className="btn-lg btn-primary text-white mt-3"
                 onClick={() => {
-                    //여기에 업로드 구현
+                    CreatePost(blocks, null);
                 }}>업로드</Button>
 
             </div>
