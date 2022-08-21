@@ -15,6 +15,7 @@ import {Button} from "react-bootstrap";
 import {useParams} from "react-router-dom";
 import useGetPost from "../service/post/PostService";
 import PostContent from "../component/post/blocks/PostContent";
+import CreatePost from "../service/post/CreatePost";
 
 export default function Editor() {
 
@@ -264,7 +265,7 @@ export default function Editor() {
 
                 <Button className="btn-lg btn-primary text-white mt-3"
                 onClick={() => {
-                    //여기에 업로드 구현
+                    CreatePost(blocks, null);
                 }}>업로드</Button>
 
             </div>
