@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Image, Stack} from "react-bootstrap";
+import {Container, Image} from "react-bootstrap";
 import PostInfo from "../component/post/blocks/normal/PostInfo";
 import MarkdownTextBlock from "../component/post/blocks/normal/MarkdownTextBlock";
 import NavBar from "../component/NavBar";
@@ -21,6 +21,7 @@ export default function Post() {
 
     const params = useParams()
     const post = useGetPost(params.id)
+
     return (
         <div>
             <NavBar
@@ -29,21 +30,8 @@ export default function Post() {
             />
 
             <div className="container justify-content-center" style={{marginTop: "7rem"}}>
-                <PostInfo title={post.title} name={post.username} time={post.time} favorites={post.favorites} onFavoritesClick={() => {
-                    console.log("여기에 좋아요 작성")
-                }}/>
-                {
-                    post.tags && (
-                        <Stack direction="horizontal" gap="2">
-                            {
-                                post.tags.map((tag) => {
-                                    return <div className="border rounded-pill p-1 px-3 text-secondary">{tag}</div>
-                                })
-                            }
-                        </Stack>
-                    )
-                }
-                <div className="container my-3 border-top" style={{height: "0.1rem"}}></div>
+                <PostInfo title={post.title} name={post.username} time={post.time} favorites={post.favorites}/>
+                <div className="container pt-3 border-top" style={{height: "0.1rem"}}></div>
 
                 {
                     post.contents.map(content => {
@@ -59,7 +47,7 @@ export default function Post() {
                 }
 
                 <div className="container mt-5 border-top" style={{height: "0.1rem"}}></div>
-                <h3 className="pt-3">댓글 <span className="h6 text-secondary">{post.comments.length || 0}</span></h3>
+                <h3 className="pt-3">댓글 <span className="h6 text-secondary">{post.comments.length}</span></h3>
 
                 {
                     post.comments.map(comment => {
