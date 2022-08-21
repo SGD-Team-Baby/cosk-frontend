@@ -10,19 +10,22 @@ export async function login(email, password) {
     )
 
         .then(function (response) {
-            console.log(response.state())
+            // console.log(response)
+            // console.log(response.status)
             saveToken(response.data.access_token);
-        })
-        .catch(function (error){
-            console.log(error.response.state)
-        })
 
+        });
 
 }
 
 export function logout(){
     sessionStorage.removeItem("token");
 }
+
+export function getToken(){
+    sessionStorage.getItem("token");
+}
 function saveToken(token){
     sessionStorage.setItem("token", token);
 }
+

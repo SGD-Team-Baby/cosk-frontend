@@ -6,6 +6,7 @@ import NotFound from "./page/error/404";
 import Post from "./page/Post";
 import Editor from "./page/Editor";
 import React from "react";
+import Login from "./page/Login";
 
 function App() {
 
