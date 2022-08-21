@@ -1,25 +1,34 @@
 import instance from "../../ConstantValue";
 import ImageUpload from "./ImageUpload";
-export default function (post, parentId){
-    const parent = parentId || null;
-    const token = "aaaaa";
+import {getToken} from "../TokenService";
+
+export default function (parentId, title, post, tags){
+    const parent = parentId===(-1)?null:parentId;
+    const token = getToken();
     let loading = true;
     let error = false;
     let result = undefined;
+
+    console.log({
+        'parent': parent,
+        'title': title,
+        'contents': post,
+        'tags':tags
+    })
+
     if(loading) {
         instance.post("/post/create", {
             'parent': parent,
-            'title': post.title,
-            'contents': post.contents
-        }, {headers: {'Authorization': token}})
+            'title': title,
+            'contents': post,
+            'tags':tags
+        }, {headers: {'Authorization': "Bearer" + token}})
             .then(function (response) {
                 loading = false;
-                result = response.data;
             })
             .catch(function (error) {
                 loading = false;
                 error = true;
-                result = error.response.data;
             })
     }
 

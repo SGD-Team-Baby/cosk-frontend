@@ -9,7 +9,6 @@ export default function useGetPost(postId) {
 
     useEffect(() => {
         let completed = false;
-
         async function get(){
             const result = await instance.get(`/post/info/${postId}`, { headers: {'Authentication' : `Bearer ${token}`}})
                 .then(function (response){
@@ -37,10 +36,10 @@ export default function useGetPost(postId) {
 
     if(!loading && !error){
         const user = data.user;
-        console.log(postId);
-        console.log(user);
-        console.log(data.contents);
-        console.log(data.favorite);
+        // console.log(postId);
+        // console.log(user);
+        // console.log(data.contents);
+        // console.log(data.favorite);
         return (
             {
                 username:user.name,

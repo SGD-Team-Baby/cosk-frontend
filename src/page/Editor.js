@@ -16,6 +16,7 @@ import {useParams} from "react-router-dom";
 import useGetPost from "../service/post/PostService";
 import PostContent from "../component/post/blocks/PostContent";
 import CreatePost from "../service/post/CreatePost";
+import {isLogined} from "../service/user/LoginService";
 
 export default function Editor() {
 
@@ -85,7 +86,7 @@ export default function Editor() {
             }))
         }
         setBlockChangeFunctionTrigger(!blockChangeFunctionTrigger)
-        console.log(blocks[index])
+        // console.log(blocks[index])
     }
 
     useEffect(() => {
@@ -115,7 +116,7 @@ export default function Editor() {
     })
 
     useEffect(() => {
-        addBlock(0, "md")
+        addBlock(0, "text")
     }, []);
 
     return (
@@ -148,12 +149,12 @@ export default function Editor() {
                        className="form-control text-dark px-2 py-1 mt-3"
                        onChange={(e) => {
                            setTitle(e.target.value)
-                           console.log(blockRef.current[0].getValue())
+                           // console.log(blockRef.current[0].getValue())
                        }}/>
                 {
                     blocks.map((block, index) => {
                         switch (block.type) {
-                            case "md":
+                            case "text":
                                 return (
                                     <div key={block.uuid} ref={(el) => blockRef.current[index] = el}>
                                         <MarkdownEditorBlock
@@ -265,7 +266,8 @@ export default function Editor() {
 
                 <Button className="btn-lg btn-primary text-white mt-3"
                 onClick={() => {
-                    CreatePost(blocks, null);
+                    console.log(title)
+                    CreatePost(originalPostId, title, blocks, tags);
                 }}>업로드</Button>
 
             </div>
