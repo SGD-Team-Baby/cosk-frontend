@@ -22,6 +22,7 @@ function App() {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/post/:id" element={<Post />} />
                     <Route path="/edit" element={<Editor />} />
+                    <Route path="/edit/:id" element={<Editor />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>

@@ -12,8 +12,15 @@ import AddButton from "../component/editor/AddButton";
 import CodeEditorBlock from "../component/editor/CodeEditorBlock";
 import TagBlock from "../component/editor/TagBlock";
 import {Button} from "react-bootstrap";
+import {useParams} from "react-router-dom";
+import useGetPost from "../service/post/PostService";
+import PostContent from "../component/post/blocks/PostContent";
 
 export default function Editor() {
+
+    const params = useParams()
+    const originalPostId = params.id || -1
+    const post = useGetPost(originalPostId)
 
     const [title, setTitle] = useState("")
     const [blocks, setBlocks] = useState([])
@@ -118,7 +125,24 @@ export default function Editor() {
             />
 
             <div className="container justify-content-center" style={{marginTop: "7rem"}}>
-                <h4>제목</h4>
+
+                {
+                    originalPostId >= 0 &&
+                    <PostContent
+                        showChild={false}
+                        showComments={false}
+                        id={params.id}
+                        title={post.title}
+                        username={post.username}
+                        time={post.time}
+                        tags={post.tags}
+                        favorites={post.favorites}
+                        contents={post.contents}
+                        childPosts={post.child}
+                        comments={post.comments} />
+                }
+
+                <h4>{originalPostId >= 0 && "답글 "}제목</h4>
                 <input type="text" id="input-title"
                        className="form-control text-dark px-2 py-1 mt-3"
                        onChange={(e) => {
