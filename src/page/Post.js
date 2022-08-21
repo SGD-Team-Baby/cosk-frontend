@@ -21,6 +21,7 @@ export default function Post() {
 
     const params = useParams()
     const post = useGetPost(params.id)
+
     return (
         <div>
             <NavBar
