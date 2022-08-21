@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PostInfo({title, name, time, favorites}) {
+export default function PostInfo({title, name, time, favorites, onFavoritesClick}) {
     return (
         <div>
             <link rel="stylesheet"
@@ -19,7 +19,7 @@ export default function PostInfo({title, name, time, favorites}) {
                 <div className="col-auto text-secondary">
                     <span className="material-symbols-outlined align-text-top" style={{fontSize: "110%"}}>event</span> {time}
                 </div>
-                <div className="col-auto text-primary">
+                <div className="col-auto text-primary" style={{cursor: "pointer"}} onClick={onFavoritesClick}>
                     <p><span className="material-symbols-outlined align-text-top" style={{fontSize: "110%"}}>thumb_up</span> <span>{favorites}</span></p>
                 </div>
             </div>

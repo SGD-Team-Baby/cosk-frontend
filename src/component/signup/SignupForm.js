@@ -1,15 +1,10 @@
 import React, {useState} from "react";
 import {Accordion, Button, Container, Form, Spinner} from "react-bootstrap";
 import instance from "../../ConstantValue";
-const validEmailRegex = new RegExp(
-    '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
-);
-
 
 const validEmailRegex = new RegExp(
     '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
 );
-
 
 export default function SignupForm() {
     const [sentEmail, setSentEmail] = useState("")
