@@ -4,7 +4,7 @@ import LoginForm from "../login/LoginForm";
 import {useNavigate} from "react-router-dom";
 
 
-export default function Guest(props) {
+export default function NavBarGuest(props) {
     const navigate = useNavigate()
 
     return (
