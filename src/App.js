@@ -6,6 +6,7 @@ import NotFound from "./page/error/404";
 import Post from "./page/Post";
 import Editor from "./page/Editor";
 import React from "react";
+import Login from "./page/Login";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Main />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/post/:id" element={<Post />} />
                     <Route path="/edit" element={<Editor />} />

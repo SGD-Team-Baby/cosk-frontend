@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Form} from "react-bootstrap";
-import axios from "axios";
+import {logout, login} from "../../service/user/LoginService";
 
 export default function LoginForm() {
     const [inputName, setinputName] = useState('');
@@ -17,50 +17,18 @@ export default function LoginForm() {
         setInputPassword(e.target.value)
     }
 
-    const loginOnClick = () =>{
-        const url = "http://127.0.0.1:8000/user/login/"
-        axios.post(url,
-            {
-                'username':inputName,
-                'password':inputPassword,
-
-            },
-            {
-                validateStatus: function (status) {
-                    return (status >= 200 && status < 300) || status === 401;
-                }
-            })
-            .then(function (response){
-                if(response.status === 401) {
+    function loginOnClick (){
+        if(inputName === "" || inputPassword === "")
+            setFailed(true);
+        else {
+            login(inputName, inputPassword)
+                .then((result) => {
+                    document.location.href = "/";
+                })
+                .catch(() => {
                     setFailed(true);
-                    console.clear();//loginPage 이동 -> loginPage면 새로 고침
-                }
-
-                else{
-                    document.location.href ='/';
-                }
-
-
-            })
-            .catch(function (error){
-                console.clear();//trash
-                if (error.response){
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                }
-                else if (error.request) {
-                    console.log(error.request);
-                }
-
-                else {
-                    console.log("Error", error.message);
-
-                }
-
-                setError(true);
-
-            })
+                })
+        }
 
     }
     return (
