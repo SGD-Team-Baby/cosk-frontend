@@ -46,7 +46,6 @@ export default function useGetPost(postId) {
         return (
             {
                 username:user.name,
-                tags:data.tags,
                 title:data.title,
                 favorites: data.favorite,
                 time: data.time,
