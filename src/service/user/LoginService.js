@@ -1,5 +1,5 @@
 import instance from "../../ConstantValue";
-import { removeToken, setToken} from "../TokenService";
+import {getToken, removeToken, setToken} from "../TokenService";
 
 export async function login(email, password) {
     return instance.post("/account/login",
@@ -24,3 +24,6 @@ export function logout(){
 
 }
 
+export function isLogined(){
+    return getToken() === undefined;
+}
