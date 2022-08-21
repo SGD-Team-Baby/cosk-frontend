@@ -9,6 +9,7 @@ import CodeBlock from "../component/post/blocks/normal/CodeBlock";
 import useGetPost from "../service/post/PostService";
 import Comment from "../component/post/comment/Comment";
 import {useParams} from "react-router-dom";
+import PostContent from "../component/post/blocks/PostContent";
 
 
 /**
@@ -29,52 +30,23 @@ export default function Post() {
                 lightText={false}
             />
 
-            <div className="container justify-content-center" style={{marginTop: "7rem"}}>
-                <PostInfo title={post.title} name={post.username} time={post.time} favorites={post.favorites} onFavoritesClick={() => {
-                    console.log("여기에 좋아요 작성")
+            <PostContent
+                id={params.id}
+                title={post.title}
+                username={post.username}
+                time={post.time}
+                tags={post.tags}
+                favorites={post.favorites}
+                contents={post.contents}
+                childPosts={post.child}
+                comments={post.comments}
+                onFavoritesClick={() => {
+                    console.log("조와용")
+                }}
+                onNewComment={(postId, commentId, str) => {
+                    if(commentId === -1) console.log("댓글 작성: ", str)
+                    else console.log("대댓글 작성: ", str)
                 }}/>
-                {
-                    post.tags && (
-                        <Stack direction="horizontal" gap="2">
-                            {
-                                post.tags.map((tag) => {
-                                    return <div className="border rounded-pill p-1 px-3 text-secondary">{tag}</div>
-                                })
-                            }
-                        </Stack>
-                    )
-                }
-                <div className="container my-3 border-top" style={{height: "0.1rem"}}></div>
-
-                {
-                    post.contents.map(content => {
-                        switch (content.type) {
-                            case "text":
-                                return <MarkdownTextBlock text={content.text}/>
-                            case "image":
-                                return <ImageBlock src={content.text} description={content.options}/>
-                            case "code":
-                                return <CodeBlock code={content.text} language={content.options}/>
-                        }
-                    })
-                }
-
-                <div className="container mt-5 border-top" style={{height: "0.1rem"}}></div>
-                <h3 className="pt-3">댓글 <span className="h6 text-secondary">{post.comments.length || 0}</span></h3>
-
-                {
-                    post.comments.map(comment => {
-                        return <Comment
-                            username={comment.username}
-                            time={comment.time}
-                            content={comment.content}
-                            comments={comment.comments}
-                            allowComment={true}
-                        />
-                    })
-                }
-            </div>
-
         </div>
     )
 }

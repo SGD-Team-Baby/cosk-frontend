@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {Accordion, Button, Container, Form, Spinner} from "react-bootstrap";
-import instance from "../../ConstantValue";
+import instance, {validEmailRegex} from "../../ConstantValue";
 
 export default function SignupForm() {
     const [sentEmail, setSentEmail] = useState("")
-
 
     if(sentEmail === "") {
         return <SignupInputForm setSentEmail={setSentEmail}/>

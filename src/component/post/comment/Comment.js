@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import {Button} from "react-bootstrap";
 
-export default function Comment({username, time, content, comments, allowComment}) {
+export default function Comment({id, username, time, content, comments, allowComment, onNewComment}) {
     const [commentOpened, setCommentOpened] = useState(false)
+    const [comment, setComment] = useState("")
 
     return (
         <div>
@@ -20,19 +22,30 @@ export default function Comment({username, time, content, comments, allowComment
                     </div>
                     : <div className="pb-4"></div>
             }
+            {
+                commentOpened && <div>
+                    <input style={{width: "100%"}} onChange={(e) => setComment(e.target.value)} placeholder="댓글을 입력하세요"/>
+                    <Button className="text-white mt-2" onClick={() => {
+                        onNewComment(id, comment)
+                    }}>대댓글 작성</Button>
+                </div>
+            }
             {commentOpened && Array.isArray(comments) && comments.map(comment => {
                 return (
                     <div className="ps-3">
                         <Comment
+                            id={comment.id}
                             username={comment.username}
                             time={comment.time}
                             content={comment.content}
                             comments={[]}
                             allowComment={false}
+                            onNewComment={onNewComment}
                         />
                     </div>
                 )
             })
+            }
             }
         </div>
     )
