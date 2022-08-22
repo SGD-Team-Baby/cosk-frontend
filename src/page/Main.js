@@ -5,9 +5,11 @@ import {useScroll} from "../util/scroll";
 import {Container, ListGroup, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import NavBar from "../component/NavBar";
 import BoardList from "../component/Board/BoardList";
+import {useNavigate} from "react-router-dom";
 
 export default function Main() {
     const {scrollY} = useScroll();
+    const navigate = useNavigate()
     const refHeader = useRef(null);
     let height = refHeader.current?.clientHeight - (4 * parseFloat(getComputedStyle(document.documentElement).fontSize));
     if (isNaN(height)) height = 0
@@ -71,7 +73,7 @@ export default function Main() {
                 </ListGroup>
 
                 <div style={{display: "flex", width: "100%"}}>
-                    <a className="text-primary justify-content-end m-4">더보기 ></a>
+                    <a className="text-primary justify-content-end m-4" onClick={() => navigate("/posts/1")} style={{cursor: "pointer"}}>더보기 ></a>
                 </div>
             </Container>
 
