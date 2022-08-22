@@ -7,6 +7,7 @@ import Post from "./page/Post";
 import Editor from "./page/Editor";
 import React from "react";
 import Login from "./page/Login";
+import PostList from "./page/PostList";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/post/:id" element={<Post />} />
+                    <Route path="/posts/:page" element={<PostList />} />
                     <Route path="/edit" element={<Editor />} />
                     <Route path="/edit/:id" element={<Editor />} />
                     <Route path="*" element={<NotFound />} />
