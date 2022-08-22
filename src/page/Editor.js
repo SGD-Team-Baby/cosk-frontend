@@ -42,7 +42,8 @@ export default function Editor() {
                 type: type,
                 content: "",
                 options: {},
-                showOptions: false
+                showOptions: false,
+                text:""
             }
             , ...arrayRight])
     }
@@ -267,7 +268,6 @@ export default function Editor() {
 
                 <Button className="btn-lg btn-primary text-white mt-3"
                 onClick={() => {
-                    console.log(blocks)
                     CreatePost(originalPostId, title, blocks, tags)
                 }}>업로드</Button>
 

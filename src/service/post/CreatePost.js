@@ -10,6 +10,8 @@ export default async function (parentId, title, post, tags){
     // console.log(extractPost(["", "", "a"]));
 
     // console.log(imageUpload())
+    console.log(await extractContent(post))
+    console.log(JSON.stringify(await extractContent(post)))
     await sendPost({
         parent:parent,
         title:title,
@@ -20,17 +22,41 @@ export default async function (parentId, title, post, tags){
 
 async function extractContent(posts){
     console.log("extractContent")
-    return await posts.map(async (item) => {
-        if (item.type === 'img') {
-            item.text = await imageUpload(item.options.imgblob).then(function(){
-                console.log("2");
-            })
-            item.options = item.content;
-        }
-        else if(item.type === 'code' || item.type === 'text'){
-            item.text = item.content
-        }
-    })
+    const result = (await Promise.all(
+        posts.map(async (item) => {
+            const dummy = {
+                text:"",
+                type:"",
+                subtitle:"",
+                options:""
+            }
+            if (item.type === 'img') {
+                dummy.text = await imageUpload(item.options.imgblob)
+                dummy.options = item.content;
+                dummy.type= "image"
+            } else if (item.type === 'code' || item.type === 'text') {
+                dummy.text = item.content
+                dummy.type= item.type
+            }
+
+            return dummy;
+        })
+    ))
+    console.log("RESU1T")
+    console.log(result)
+    return result;
+
+    //
+    //
+    // (await Promise.all(posts.reduce(async (item) => {
+    //     if (item.type === 'img') {
+    //         item.text = await imageUpload(item.options.imgblob)
+    //         item.options = item.content;
+    //     }
+    //     else if(item.type === 'code' || item.type === 'text'){
+    //         item.text = item.content
+    //     }
+    // })))
 }
 
 function extractTag(tags){
@@ -46,6 +72,7 @@ function extractTag(tags){
 
 async function sendPost(post){
     const token = getToken();
+    console.log("POST")
     console.log(post)
     instance.post("/post/create", JSON.stringify({
         'parent': post.parent,
