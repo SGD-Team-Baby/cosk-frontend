@@ -237,7 +237,8 @@ export default function Editor() {
                                                     type: block.type,
                                                     content: block.content,
                                                     options: {
-                                                        imgblob: e
+                                                        imgblob: e,
+                                                        imgType: e.type
                                                     }
                                                 }
                                             )}
@@ -266,8 +267,8 @@ export default function Editor() {
 
                 <Button className="btn-lg btn-primary text-white mt-3"
                 onClick={() => {
-                    console.log(title)
-                    CreatePost(originalPostId, title, blocks, tags);
+                    console.log(blocks)
+                    CreatePost(originalPostId, title, blocks, tags)
                 }}>업로드</Button>
 
             </div>

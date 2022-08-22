@@ -13,7 +13,7 @@ export default function BoardList(props) {
         let completed = false;
 
         async function get(){
-            const result = await instance.get("/post/list", { headers: {'Authentication' : `Bearer ${token}`}})
+            const result = await instance.get("/post/list", {})
 
                 .then(function (response){
                     // console.log(response.data);

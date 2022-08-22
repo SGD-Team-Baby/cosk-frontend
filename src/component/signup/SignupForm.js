@@ -128,7 +128,7 @@ function SignupInputForm(props) {
                         props.setSentEmail(email)
 
                         console.log(email, password, password, name);
-                        const url = 'http://132.226.225.49/account/registration';
+                        const url = 'http:/api.cosk.kr/account/registration';
 
                         instance.post(url,
                             {

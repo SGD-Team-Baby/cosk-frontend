@@ -1,48 +1,60 @@
 import instance from "../../ConstantValue";
 import {getToken} from "../TokenService";
+import {imageUpload} from "../image/ImageUpload";
 
-export default function (parentId, title, post, tags){
+export default async function (parentId, title, post, tags){
     const parent = parentId===(-1)?null:parentId;
     const token = getToken();
     let loading = true;
     let error = false;
-    let result = undefined;
-    console.log(post)
+    // console.log(extractPost(["", "", "a"]));
 
-    console.log(JSON.stringify({
-        'parent': parent,
-        'title': title,
-        'contents':holy(post),
-        'tags':tags.split(",")
-    }))
-
-    if(loading) {
-        instance.post("/post/create", JSON.stringify({
-            'parent': parent,
-            'title': title,
-            'contents': holy(post),
-            'tags':tags.split(",")
-        }), {headers: {'Authorization': "Bearer " + token, 'content-type':' application/json'}})
-            .then(function (response) {
-                loading = false;
-            })
-            .catch(function (error) {
-                loading = false;
-                error = true;
-            })
-    }
-
-    return result;
+    // console.log(imageUpload())
+    await sendPost({
+        parent:parent,
+        title:title,
+        contents:await extractContent(post),
+        tags:extractTag(tags)
+    });
 }
 
-function holy(contents){
-    return contents.map((item) => (
-
-        {
-            type:item['type'],
-            text:item['content'],
-            subtitle:'',
-            options:item['type']==="text"?(""):item['options'].language
+async function extractContent(posts){
+    console.log("extractContent")
+    return await posts.map(async (item) => {
+        if (item.type === 'img') {
+            item.text = await imageUpload(item.options.imgblob).then(function(){
+                console.log("2");
+            })
+            item.options = item.content;
         }
-    ));
+        else if(item.type === 'code' || item.type === 'text'){
+            item.text = item.content
+        }
+    })
 }
+
+function extractTag(tags){
+    tags = tags.trim();
+    if(tags === "")
+        return [];
+    else
+        return (tags.split(",").map((item) => (
+            item.trim()
+        )));
+
+}
+
+async function sendPost(post){
+    const token = getToken();
+    console.log(post)
+    instance.post("/post/create", JSON.stringify({
+        'parent': post.parent,
+        'title': post.title,
+        'contents': post.contents,
+        'tags':post.tags
+    }), {headers: {'Authorization': "Bearer " + token, 'content-type':' application/json'}})
+        .catch(function(error){
+            console.log(error.response)
+        })
+}
+
