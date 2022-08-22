@@ -1,5 +1,4 @@
 import instance from "../../ConstantValue";
-import ImageUpload from "./ImageUpload";
 import {getToken} from "../TokenService";
 
 export default function (parentId, title, post, tags){
@@ -8,21 +7,22 @@ export default function (parentId, title, post, tags){
     let loading = true;
     let error = false;
     let result = undefined;
+    console.log(post)
 
-    console.log({
+    console.log(JSON.stringify({
         'parent': parent,
         'title': title,
-        'contents': post,
-        'tags':tags
-    })
+        'contents':holy(post),
+        'tags':tags.split(",")
+    }))
 
     if(loading) {
-        instance.post("/post/create", {
+        instance.post("/post/create", JSON.stringify({
             'parent': parent,
             'title': title,
-            'contents': post,
-            'tags':tags
-        }, {headers: {'Authorization': "Bearer" + token}})
+            'contents': holy(post),
+            'tags':tags.split(",")
+        }), {headers: {'Authorization': "Bearer " + token, 'content-type':' application/json'}})
             .then(function (response) {
                 loading = false;
             })
@@ -33,4 +33,16 @@ export default function (parentId, title, post, tags){
     }
 
     return result;
+}
+
+function holy(contents){
+    return contents.map((item) => (
+
+        {
+            type:item['type'],
+            text:item['content'],
+            subtitle:'',
+            options:item['type']==="text"?(""):item['options'].language
+        }
+    ));
 }
