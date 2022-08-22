@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export default function useGetPostList({page}) {
+export default function useGetPostList({page, postListName}) {
     const [posts, setPosts] = useState([])
     const [total, setTotal] = useState(0)
 

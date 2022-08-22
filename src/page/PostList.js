@@ -5,11 +5,11 @@ import {Button, Pagination} from "react-bootstrap";
 import useGetPostList from "../service/post/PostListService";
 import PostListItem from "../component/post/PostListItem";
 
-export default function PostList() {
+export default function PostList({postListName}) {
     const {page} = useParams()
     const navigate = useNavigate()
 
-    const {posts, total} = useGetPostList(page)
+    const {posts, total} = useGetPostList(page, postListName)
     const endPage = Math.ceil(total / 20)
 
     return (
@@ -20,7 +20,7 @@ export default function PostList() {
             />
 
             <div className="container justify-content-center" style={{marginTop: "7rem"}}>
-                <div className="text-center"><h3><strong>전체 게시글</strong></h3></div>
+                <div className="text-center"><h3><strong>{postListName}</strong></h3></div>
 
                 <div className="d-flex mt-5 w-100 justify-content-center">
                     <input type="text" id="search"

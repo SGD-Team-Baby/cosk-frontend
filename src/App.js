@@ -22,7 +22,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/post/:id" element={<Post />} />
-                    <Route path="/posts/:page" element={<PostList />} />
+                    <Route path="/posts/:page" element={<PostList postListName="전체 게시글"/>} />
                     <Route path="/edit" element={<Editor />} />
                     <Route path="/edit/:id" element={<Editor />} />
                     <Route path="*" element={<NotFound />} />
