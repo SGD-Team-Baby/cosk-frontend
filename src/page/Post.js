@@ -36,6 +36,7 @@ export default function Post() {
                 username={post.username}
                 time={post.time}
                 tags={post.tags}
+                visit={post.visit}
                 favorites={post.favorites}
                 contents={post.contents}
                 childPosts={post.child}
