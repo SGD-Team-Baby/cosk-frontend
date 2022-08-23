@@ -15,6 +15,7 @@ export default function PostContent({
                                         username,
                                         time,
                                         tags,
+                                        visit,
                                         favorites,
                                         contents,
                                         childPosts,
@@ -28,7 +29,8 @@ export default function PostContent({
 
     return (
         <div className="container justify-content-center" style={{marginTop: "7rem"}}>
-            <PostInfo title={title} name={username} time={time} favorites={favorites} onFavoritesClick={onFavoritesClick}/>
+            <PostInfo title={title} name={username} time={time} favorites={favorites} visit={visit}
+                      onFavoritesClick={onFavoritesClick}/>
             {
                 tags && (
                     <Stack direction="horizontal" gap="2">
@@ -86,7 +88,7 @@ export default function PostContent({
             {
                 showComments && <div>
                     <h3 className="pt-3">댓글 <span className="h6 text-secondary">{comments.length}</span></h3>
-                    <input style={{width:"100%"}} onChange={(e) => setComment(e.target.value)} placeholder="댓글을 입력하세요"/>
+                    <input style={{width: "100%"}} onChange={(e) => setComment(e.target.value)} placeholder="댓글을 입력하세요"/>
                     <Button className="text-white mt-2" onClick={() => {
                         onNewComment(id, -1, comment)
                     }}>댓글 작성</Button>

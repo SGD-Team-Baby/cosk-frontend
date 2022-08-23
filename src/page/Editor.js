@@ -150,7 +150,7 @@ export default function Editor() {
                        className="form-control text-dark px-2 py-1 mt-3"
                        onChange={(e) => {
                            setTitle(e.target.value)
-                           // console.log(blockRef.current[0].getValue())
+
                        }}/>
                 {
                     blocks.map((block, index) => {
@@ -269,6 +269,7 @@ export default function Editor() {
                 <Button className="btn-lg btn-primary text-white mt-3"
                 onClick={() => {
                     CreatePost(originalPostId, title, blocks, tags)
+
                 }}>업로드</Button>
 
             </div>
