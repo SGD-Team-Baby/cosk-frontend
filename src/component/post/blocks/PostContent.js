@@ -94,10 +94,9 @@ export default function PostContent({
                         comments.map((comment) => {
                             return <Comment
                                 id={comment.id}
-                                username={comment.username}
+                                username={comment.user.name}
                                 time={comment.time}
-                                content={comment.content}
-                                comments={comment.comments}
+                                content={comment.text}
                                 allowComment={true}
                                 onNewComment={(commentId) => onNewComment(id, commentId, comment)}
                             />
