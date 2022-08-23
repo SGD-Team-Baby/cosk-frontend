@@ -74,14 +74,19 @@ async function sendPost(post){
     const token = getToken();
     console.log("POST")
     console.log(post)
-    instance.post("/post/create", JSON.stringify({
+    await instance.post("/post/create", JSON.stringify({
         'parent': post.parent,
         'title': post.title,
         'contents': post.contents,
         'tags':post.tags
     }), {headers: {'Authorization': "Bearer " + token, 'content-type':' application/json'}})
+        .then(function (response) {
+            console.log(response.data.id)
+            document.location.href=`/post/${response.data.id}`
+        })
         .catch(function(error){
             console.log(error.response)
         })
+
 }
 
