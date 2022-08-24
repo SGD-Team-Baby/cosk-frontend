@@ -3,6 +3,8 @@ import {Stack, Nav, Button, OverlayTrigger, Popover, Form, Dropdown, NavDropdown
 import LoginForm from "../login/LoginForm";
 import {useNavigate} from "react-router-dom";
 import {questionPointColor} from "../../ConstantValue";
+import {removeToken} from "../../service/TokenService";
+import {logout} from "../../service/user/LoginService";
 
 
 export default function NavBarUser({user, textStyle}) {
@@ -63,7 +65,7 @@ export default function NavBarUser({user, textStyle}) {
                         <Dropdown.Item eventKey="2">내 질문</Dropdown.Item>
                         <Dropdown.Item eventKey="2">내 답변</Dropdown.Item>
                         <Dropdown.Divider></Dropdown.Divider>
-                        <Dropdown.Item eventKey="1">로그아웃</Dropdown.Item>
+                        <Dropdown.Item eventKey="1" onClick={() => {logout()}}>로그아웃</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Stack>
