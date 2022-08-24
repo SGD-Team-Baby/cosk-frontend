@@ -147,7 +147,6 @@ export default function Editor() {
                        className="form-control text-dark px-2 py-1 mt-3"
                        onChange={(e) => {
                            setTitle(e.target.value)
-                           console.log(blockRef.current[0].getValue())
                        }}/>
                 {
                     blocks.map((block, index) => {
@@ -264,7 +263,7 @@ export default function Editor() {
 
                 <Button className="btn-lg btn-primary text-white mt-3"
                 onClick={() => {
-                    //여기에 업로드 구현
+                    console.log(title)
                 }}>업로드</Button>
 
             </div>
