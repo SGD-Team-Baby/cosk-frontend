@@ -4,7 +4,8 @@ import LogoText from "./logo/TextLogo";
 import {Container, Navbar, Stack} from "react-bootstrap";
 import '../css/material.css'
 import '../css/search.css'
-import Guest from "./user/Guest";
+import NavBarGuest from "./user/NavBarGuest";
+import NavBarUser from "./user/NavBarUser";
 
 export default class NavBar extends React.Component {
 
@@ -19,7 +20,7 @@ export default class NavBar extends React.Component {
                     <Container className="align-content-center">
                         <Navbar.Brand href="/">
                             <Stack direction="horizontal" gap="3">
-                                <Logo />
+                                <Logo/>
                                 <LogoText textStyle={`text-${textState}`}/>
                             </Stack>
                         </Navbar.Brand>
@@ -31,7 +32,22 @@ export default class NavBar extends React.Component {
                                        placeholder="search"/>
                             </div>
 
-                            <Guest textStyle={`text-${textState}`}/>
+                            <NavBarUser user={
+                                {
+                                    id: 2,
+                                    badges: "🌄 🙋🏻",
+                                    username: "tmdals099",
+                                    name: "평행세계의 YSM",
+                                    email: "tmdals099@gmail.com",
+                                    question: 89,
+                                    answer: 3,
+                                    followers: 17,
+                                    following: 14,
+                                    organization: "Koreatech",
+                                    links: ["https://blog.ysmstudio.be", "https://seungmin.dev"]
+                                }
+                            }
+                                        textStyle={`text-${textState}`}/>
 
                         </Navbar.Collapse>
                     </Container>
@@ -45,6 +61,10 @@ export default class NavBar extends React.Component {
 }
 
 /*
+
+                            <NavBarGuest textStyle={`text-${textState}`}/>
+
+
 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false"

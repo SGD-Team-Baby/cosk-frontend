@@ -15,4 +15,8 @@ export const validEmailRegex = new RegExp(
     '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
 );
 
+
+export const questionPointColor = "#F900BF"
+export const answerPointColor = "#9900F0"
+
 export default instance;
