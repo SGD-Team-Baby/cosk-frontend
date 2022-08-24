@@ -25,5 +25,5 @@ export function logout(){
 }
 
 export function isLogined(){
-    return getToken() === undefined;
+    return getToken() !== null;
 }

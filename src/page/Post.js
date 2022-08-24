@@ -10,6 +10,7 @@ import useGetPost from "../service/post/PostService";
 import Comment from "../component/post/comment/Comment";
 import {useParams} from "react-router-dom";
 import PostContent from "../component/post/blocks/PostContent";
+import uploadComment from "../service/uploadComment";
 
 
 /**
@@ -45,7 +46,10 @@ export default function Post() {
                     console.log("조와용")
                 }}
                 onNewComment={(postId, commentId, str) => {
-                    if(commentId === -1) console.log("댓글 작성: ", str)
+                    if(commentId === -1){
+                        console.log(str)
+                        uploadComment(postId, str)
+                    }
                     else console.log("대댓글 작성: ", str)
                 }}/>
         </div>

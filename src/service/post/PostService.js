@@ -1,17 +1,19 @@
 import {useEffect, useState} from "react";
 import instance from "../../ConstantValue";
+import {getToken} from "../TokenService";
+import {isLogined} from "../user/LoginService";
 export default function useGetPost(postId) {
 
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
-    const token = "AAAAAA";
+    const token = isLogined()?"Bearer " + getToken():"";
+
 
     useEffect(() => {
         let completed = false;
-
         async function get(){
-            const result = await instance.get(`/post/info/${postId}`, { headers: {'Authentication' : `Bearer ${token}`}})
+            const result = await instance.get(`/post/info/${postId}`, { headers: {'Authorization' : token}})
                 .then(function (response){
                     return response
                 })
@@ -44,7 +46,6 @@ export default function useGetPost(postId) {
         return (
             {
                 username:user.name,
-                tags:data.tags,
                 title:data.title,
                 favorites: data.favorite,
                 time: data.time,

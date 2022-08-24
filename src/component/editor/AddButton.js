@@ -22,7 +22,7 @@ export default function AddButton({onAdd}) {
                     <div className="bg-white">
                             <span style={{cursor: "pointer"}}
                                   className="material-symbols-outlined px-2"
-                                  onClick={() => addAndClose("md")}>description</span>
+                                  onClick={() => addAndClose("text")}>description</span>
                             <span style={{cursor: "pointer"}}
                                   className="material-symbols-outlined px-2"
                                   onClick={() => addAndClose("img")}>image</span>

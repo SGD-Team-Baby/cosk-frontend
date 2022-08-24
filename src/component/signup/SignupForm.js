@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 import {Accordion, Button, Container, Form, Spinner} from "react-bootstrap";
-import instance, {validEmailRegex} from "../../ConstantValue";
+import instance from "../../ConstantValue";
+const validEmailRegex = new RegExp(
+    '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+);
 
 export default function SignupForm() {
     const [sentEmail, setSentEmail] = useState("")
+
 
     if(sentEmail === "") {
         return <SignupInputForm setSentEmail={setSentEmail}/>
@@ -124,7 +128,7 @@ function SignupInputForm(props) {
                         props.setSentEmail(email)
 
                         console.log(email, password, password, name);
-                        const url = 'http://132.226.225.49/account/registration';
+                        const url = 'http:/api.cosk.kr/account/registration';
 
                         instance.post(url,
                             {
