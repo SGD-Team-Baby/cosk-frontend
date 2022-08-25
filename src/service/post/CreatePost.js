@@ -7,11 +7,7 @@ export default async function (parentId, title, post, tags){
     const token = getToken();
     let loading = true;
     let error = false;
-    // console.log(extractPost(["", "", "a"]));
 
-    // console.log(imageUpload())
-    console.log(await extractContent(post))
-    console.log(JSON.stringify(await extractContent(post)))
     await sendPost({
         parent:parent,
         title:title,
@@ -21,7 +17,6 @@ export default async function (parentId, title, post, tags){
 }
 
 async function extractContent(posts){
-    console.log("extractContent")
     const result = (await Promise.all(
         posts.map(async (item) => {
             const dummy = {
@@ -42,21 +37,7 @@ async function extractContent(posts){
             return dummy;
         })
     ))
-    console.log("RESU1T")
-    console.log(result)
     return result;
-
-    //
-    //
-    // (await Promise.all(posts.reduce(async (item) => {
-    //     if (item.type === 'img') {
-    //         item.text = await imageUpload(item.options.imgblob)
-    //         item.options = item.content;
-    //     }
-    //     else if(item.type === 'code' || item.type === 'text'){
-    //         item.text = item.content
-    //     }
-    // })))
 }
 
 function extractTag(tags){
@@ -72,8 +53,6 @@ function extractTag(tags){
 
 async function sendPost(post, parentId){
     const token = getToken();
-    console.log("POST")
-    console.log(post)
     await instance.post("/post/create", JSON.stringify({
         'parent': post.parent,
         'title': post.title,
@@ -81,11 +60,10 @@ async function sendPost(post, parentId){
         'tags':post.tags
     }), {headers: {'Authorization': "Bearer " + token, 'content-type':' application/json'}})
         .then(function (response) {
-            console.log(response.data.id)
             document.location.href=`/post/${parentId==null?response.data.id:parentId}`
         })
         .catch(function(error){
-            console.log(error.response)
+
         })
 
 }

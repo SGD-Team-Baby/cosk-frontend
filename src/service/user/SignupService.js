@@ -14,12 +14,10 @@ export default function useSignUp() {
                 'password2': password,
             })
             .then(function (response) {
-                console.log(response)
                 setEmailRequested(true)
                 setSignupError(null)
             })
             .catch(function (error) {
-                console.log(error.response)
                 setEmailRequested(false)
                 setSignupError(error.response.data)
             })
