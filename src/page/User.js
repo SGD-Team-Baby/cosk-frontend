@@ -1,7 +1,5 @@
-import {useNavigate, useParams} from "react-router-dom";
 import {Container, Stack} from "react-bootstrap";
 import NavBar from "../component/NavBar";
-import SignupForm from "../component/signup/SignupForm";
 import '../css/material.css'
 import React from "react";
 import ContributionBar from "../component/user/ContributionBar";

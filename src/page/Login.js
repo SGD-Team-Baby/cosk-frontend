@@ -1,5 +1,4 @@
 import NavBar from "../component/NavBar";
-import SignupForm from "../component/signup/SignupForm";
 import React from "react";
 import LoginForm from "../component/login/LoginForm";
 
