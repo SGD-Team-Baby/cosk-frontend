@@ -1,13 +1,6 @@
 import React from "react";
-import {Container, Image, Stack} from "react-bootstrap";
-import PostInfo from "../component/post/blocks/normal/PostInfo";
-import MarkdownTextBlock from "../component/post/blocks/normal/MarkdownTextBlock";
 import NavBar from "../component/NavBar";
-import SignupForm from "../component/signup/SignupForm";
-import ImageBlock from "../component/post/blocks/normal/ImageBlock";
-import CodeBlock from "../component/post/blocks/normal/CodeBlock";
 import useGetPost from "../service/post/PostService";
-import Comment from "../component/post/comment/Comment";
 import {useParams} from "react-router-dom";
 import PostContent from "../component/post/blocks/PostContent";
 import uploadComment from "../service/uploadComment";
