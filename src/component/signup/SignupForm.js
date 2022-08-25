@@ -7,10 +7,11 @@ const validEmailRegex = new RegExp(
 
 export default function SignupForm() {
     const [sentEmail, setSentEmail] = useState("")
+    const [error, setError] = useState(false)
 
 
-    if(sentEmail === "") {
-        return <SignupInputForm setSentEmail={setSentEmail}/>
+    if(sentEmail === "" || error) {
+        return <SignupInputForm setSentEmail={setSentEmail} error={error} setError = {setError}/>
     } else {
         return <SignupCompleted email={sentEmail}/>
     }
@@ -24,6 +25,7 @@ function SignupInputForm(props) {
 
     const [privacyTermChecked, setPrivacyTermChecked] = useState(false)
     const [coskTermChecked, setCoskTermChecked] = useState(false)
+    const [detailMessage, setDetailMessage] = useState("")
 
     const [nicknameDuplicated, setNicknameDuplicated] = useState(false)
 
@@ -113,7 +115,7 @@ function SignupInputForm(props) {
                        setNicknameDuplicated(false)
                    }}
                    placeholder="이름"/>
-
+            {props.error ? <p className="pt-1 text-danger">{detailMessage}</p>:""}
             <Button className={`rounded-pill mt-4 btn-lg text-white ${
                 coskTermChecked
                 && privacyTermChecked
@@ -128,9 +130,9 @@ function SignupInputForm(props) {
                         props.setSentEmail(email)
 
                         console.log(email, password, password, name);
-                        const url = 'http:/api.cosk.kr/account/registration';
 
-                        instance.post(url,
+
+                        instance.post('/account/registration',
                             {
                                 'name':name,
                                 'email':email,
@@ -139,9 +141,12 @@ function SignupInputForm(props) {
                             })
                             .then(function (response) {
                                 console.log(response.data);
+                                props.setError(false);
                             })
                             .catch(function (error){
-                                console.log(error.response.data);
+                                console.log(error.response);
+                                setDetailMessage(error.response.data.email)
+                                props.setError(true)
                             })
 
                     }}
