@@ -4,6 +4,7 @@ import {Button} from "react-bootstrap";
 export default function Comment({id, username, time, content, comments, allowComment, onNewComment}) {
     const [commentOpened, setCommentOpened] = useState(false)
     const [comment, setComment] = useState("")
+
     return (
         <div>
             <div><span className="fw-bold">{username}</span> <span style={{fontSize: "0.9rem"}}>{time}</span></div>

@@ -5,52 +5,13 @@ import SignupForm from "../component/signup/SignupForm";
 import '../css/material.css'
 import React from "react";
 import ContributionBar from "../component/user/ContributionBar";
+import useGetUserInpormation from "../service/user/userImpormation";
 
 export default function User() {
-    const navigate = useNavigate()
 
-    const {username} = useParams()
 
-    const testusers = [{
-        id: 1,
-        badges: "🌄 🧑🏻‍💻",
-        username: "tmdals099",
-        name: "YSM",
-        email: "tmdals099@gmail.com",
-        question: 9,
-        answer: 58,
-        followers: 17,
-        following: 14,
-        organization: "Koreatech",
-        links: ["https://blog.ysmstudio.dev", "https://seungmin.dev"]
-    }, {
-        id: 2,
-        badges: "🌄 🙋🏻",
-        username: "tmdals099",
-        name: "평행세계의 YSM",
-        email: "tmdals099@gmail.com",
-        question: 89,
-        answer: 3,
-        followers: 17,
-        following: 14,
-        organization: "Koreatech",
-        links: ["https://blog.ysmstudio.be", "https://seungmin.dev"]
-    }, {
-        id: 3,
-        badges: "🌄 🙋🏻 🧑🏻‍💻",
-        username: "regulation123",
-        name: "GyuBa",
-        email: "asdf@asd.com",
-        question: 78,
-        answer: 37,
-        followers: 173,
-        following: 61,
-        organization: "Koreatech",
-        links: []
-    },]
-
-    const user = testusers.find(user => user.username === username)
-
+    const {user} = useGetUserInpormation();
+    console.log(user)
     return (<div>
         <NavBar
             transparent={false}
@@ -82,25 +43,25 @@ function RealUser(props) {
 
         <Stack direction="horizontal" gap={2}>
             <h1 className="fw-bold">{user.name}</h1>
-            <span className="text-secondary">{user.username}</span>
-            <h3>{user.badges}</h3>
+            <span className="text-secondary">{user.name}</span>
+            <h3>{"🌄 🙋🏻"}</h3>
         </Stack>
         <Stack direction="horizontal" gap={2}>
-            <strong>{user.followers}</strong> Followers
+            <strong>{7}</strong> Followers
             <span>|</span>
-            <strong>{user.following}</strong> Following
+            <strong>{8}</strong> Following
         </Stack>
 
         <div className="mt-4">
             <span className="material-symbols-outlined align-bottom">corporate_fare</span>
-            <span> {user.organization}</span>
+            <span> {"koreatech"}</span>
         </div>
         <div className="mt-1">
             <span className="material-symbols-outlined align-bottom">mail</span>
             <span> {user.email}</span>
         </div>
         <div>
-            {user.links.map((item) =>
+            {["https://blog.ysmstudio.be", "https://seungmin.dev"].map((item) =>
                 <div className="mt-1"><span className="material-symbols-outlined align-bottom">link</span><span> {item}</span></div>
             )}
         </div>
