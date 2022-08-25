@@ -67,7 +67,7 @@ export default function PostContent({
                     <div className="col-1">
 
                     </div>
-                    <div className="col-auto">
+                    <div className="col-11">
                         {
                             childPosts.map((post) => {
                                 return <PostContent
@@ -79,7 +79,9 @@ export default function PostContent({
                                     favorites={post.favorites}
                                     contents={post.contents}
                                     childPosts={post.child}
-                                    comments={post.comments}/>
+                                    comments={post.comments}
+                                    showChild={false}
+                                />
                             })
                         }
                     </div>
