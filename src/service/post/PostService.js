@@ -15,6 +15,8 @@ export default function useGetPost(postId) {
         async function get(){
             const result = await instance.get(`/post/info/${postId}`, { headers: {'Authorization' : token}})
                 .then(function (response){
+                    console.log("GOOD")
+                    console.log(response)
                     return response
                 })
                 .catch(function (error){
@@ -28,7 +30,8 @@ export default function useGetPost(postId) {
             if(!completed) {
                 setLoading(false);
                 setData(result.data);
-                console.log(data);
+                console.log("COMPLE")
+                console.log(result.data);
             }
         }
         get();
@@ -46,6 +49,7 @@ export default function useGetPost(postId) {
         return (
             {
                 username:user.name,
+                child:data.childs,
                 title:data.title,
                 favorites: data.favorite,
                 time: data.time,

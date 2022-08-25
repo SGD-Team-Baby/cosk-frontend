@@ -17,7 +17,7 @@ export default async function (parentId, title, post, tags){
         title:title,
         contents:await extractContent(post),
         tags:extractTag(tags)
-    });
+    }, parent);
 }
 
 async function extractContent(posts){
@@ -70,7 +70,7 @@ function extractTag(tags){
 
 }
 
-async function sendPost(post){
+async function sendPost(post, parentId){
     const token = getToken();
     console.log("POST")
     console.log(post)
@@ -82,7 +82,7 @@ async function sendPost(post){
     }), {headers: {'Authorization': "Bearer " + token, 'content-type':' application/json'}})
         .then(function (response) {
             console.log(response.data.id)
-            document.location.href=`/post/${response.data.id}`
+            document.location.href=`/post/${parentId==null?response.data.id:parentId}`
         })
         .catch(function(error){
             console.log(error.response)

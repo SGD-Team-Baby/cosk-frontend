@@ -28,7 +28,7 @@ export default function PostContent({
     const [comment, setComment] = useState("")
 
     return (
-        <div className="container justify-content-center" style={{marginTop: "7rem"}}>
+        <div>
             <PostInfo title={title} name={username} time={time} favorites={favorites} visit={visit}
                       onFavoritesClick={onFavoritesClick}/>
             {
@@ -64,13 +64,11 @@ export default function PostContent({
             {
                 showChild &&
                 <div className="row">
-                    <div className="col-1">
-
-                    </div>
-                    <div className="col-auto">
+                    <div className="ms-2">
                         {
                             childPosts.map((post) => {
-                                return <PostContent
+                                return <div>
+                                    <PostContent
                                     id={id}
                                     title={post.title}
                                     username={post.username}
@@ -79,7 +77,11 @@ export default function PostContent({
                                     favorites={post.favorites}
                                     contents={post.contents}
                                     childPosts={post.child}
-                                    comments={post.comments}/>
+                                    comments={post.comments}
+                                    showChild={false}
+                                />
+                                    <div className="border-top my-3"></div>
+                                </div>
                             })
                         }
                     </div>

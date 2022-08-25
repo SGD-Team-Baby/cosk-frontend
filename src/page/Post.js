@@ -25,27 +25,31 @@ export default function Post() {
                 lightText={false}
             />
 
-            <PostContent
-                id={params.id}
-                title={post.title}
-                username={post.username}
-                time={post.time}
-                tags={post.tags}
-                visit={post.visit}
-                favorites={post.favorites}
-                contents={post.contents}
-                childPosts={post.child}
-                comments={post.comments}
-                onFavoritesClick={() => {
-                    console.log("조와용")
-                }}
-                onNewComment={(postId, commentId, str) => {
-                    if(commentId === -1){
-                        console.log(str)
-                        uploadComment(postId, str)
-                    }
-                    else console.log("대댓글 작성: ", str)
-                }}/>
+            <div className="container justify-content-center" style={{marginTop: "7rem"}}>
+                <PostContent
+                    id={params.id}
+                    title={post.title}
+                    username={post.username}
+                    time={post.time}
+                    tags={post.tags}
+                    visit={post.visit}
+                    favorites={post.favorites}
+                    contents={post.contents}
+                    childPosts={post.child}
+                    comments={post.comments}
+                    onFavoritesClick={() => {
+                        console.log("조와용")
+                    }}
+                    onNewComment={(postId, commentId, str) => {
+                        if(commentId === -1){
+                            console.log(str)
+                            uploadComment(postId, str)
+                        }
+                        else console.log("대댓글 작성: ", str)
+                    }}/>
+            </div>
+
+
         </div>
     )
 }
