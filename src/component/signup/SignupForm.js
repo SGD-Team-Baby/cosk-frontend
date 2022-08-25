@@ -7,7 +7,7 @@ const validEmailRegex = new RegExp(
 
 export default function SignupForm() {
     const [sentEmail, setSentEmail] = useState("")
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(true)
 
 
     if(sentEmail === "" || error) {
@@ -145,7 +145,7 @@ function SignupInputForm(props) {
                             })
                             .catch(function (error){
                                 console.log(error.response);
-                                setDetailMessage(error.response.data.email)
+                                setDetailMessage(error.response.data.email || error.res.data.password1)
                                 props.setError(true)
                             })
 
