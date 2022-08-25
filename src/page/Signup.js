@@ -20,7 +20,7 @@ export default function Signup() {
             <div className="d-flex justify-content-center" style={{marginTop: "10rem"}}>
                 {signUpState.emailRequested ?
                     <SignupCompleted email={email}/> :
-                    <SignupInputForm email={email} onEmailChange={setEmail} error={signUpState.error} callSignUp={signUp()}/>}
+                    <SignupInputForm email={email} onEmailChange={setEmail} error={signUpState.signupError} callSignUp={signUp}/>}
             </div>
         </div>
     )
@@ -100,6 +100,7 @@ function SignupInputForm({email, onEmailChange, error, callSignUp}) {
                    }}
                    placeholder="이메일"/>
             {!validEmailRegex.test(email) ? <p className="pt-1 text-danger">유효한 이메일 주소를 입력해주세요.</p> : ""}
+            {error != null && error.email && <p className="pt-1 text-danger">{error.email.join("\n")}</p>}
             <input type="password" id="input_password"
                    className="form-control text-dark rounded-pill px-2 py-1 mt-3"
                    onChange={(e) => {
@@ -112,6 +113,7 @@ function SignupInputForm({email, onEmailChange, error, callSignUp}) {
                        setPasswordMatch(e.target.value)
                    }}
                    placeholder="비밀번호 확인"/>
+            {error != null && error.password1 && <p className="pt-1 text-danger">{error.password1.join("\n")}</p>}
 
             {passwordMatch !== "" && password !== passwordMatch ?
                 <p className="pt-1 text-danger">비밀번호가 일치하지 않습니다.</p> : ""}
@@ -123,6 +125,7 @@ function SignupInputForm({email, onEmailChange, error, callSignUp}) {
                        setNicknameDuplicated(false)
                    }}
                    placeholder="이름"/>
+            {error != null && error.name && <p className="pt-1 text-danger">{error.name.join("\n")}</p>}
             <Button className={`rounded-pill mt-4 btn-lg text-white ${
                 coskTermChecked
                 && privacyTermChecked
