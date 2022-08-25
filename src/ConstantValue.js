@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://api.cosk.kr/',
+    baseURL: 'https://api.cosk.kr/',
     timeout: 1000
 });
 

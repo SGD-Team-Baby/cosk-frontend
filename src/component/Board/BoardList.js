@@ -3,12 +3,9 @@ import axios from "axios";
 import {ListGroup} from "react-bootstrap";
 import instance from "../../ConstantValue";
 export default function BoardList(props) {
-    const url = "http://127.0.0.1:8000/post/list/"
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
-    const token = "AAAAAAAAAA";
-
     useEffect(() => {
         let completed = false;
 
