@@ -15,23 +15,16 @@ export default function useGetPost(postId) {
         async function get(){
             const result = await instance.get(`/post/info/${postId}`, { headers: {'Authorization' : token}})
                 .then(function (response){
-                    console.log("GOOD")
-                    console.log(response)
                     return response
                 })
                 .catch(function (error){
-                    console.log("ERROR");
                     setError(true)
-                    console.log(error);
                     return error.response;
-                    // ERROR
                 });
 
             if(!completed) {
                 setLoading(false);
                 setData(result.data);
-                console.log("COMPLE")
-                console.log(result.data);
             }
         }
         get();
@@ -42,10 +35,6 @@ export default function useGetPost(postId) {
 
     if(!loading && !error){
         const user = data.user;
-        console.log(postId);
-        console.log(user);
-        console.log(data.contents);
-        console.log(data.favorite);
         return (
             {
                 username:user.name,

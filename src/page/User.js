@@ -9,7 +9,6 @@ export default function User() {
 
 
     const {user} = useGetUserInpormation();
-    console.log(user)
     return (<div>
         <NavBar
             transparent={false}

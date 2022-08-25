@@ -11,10 +11,7 @@ export async function login(email, password) {
     )
 
         .then(function (response) {
-            // console.log(response)
-            // console.log(response.status)
             setToken(response.data.access_token);
-            console.log(response.data.user.id)
             setId(response.data.user.id);
         });
 

@@ -10,7 +10,6 @@ export default function useGetUserInpormation() {
         instance.get(`/account/user`, {headers: {'Authorization': "Bearer " + token}})
             .then(function (response){
                 setUser(response.data);
-                console.log(response.data.id)
             })
 
     }, [])

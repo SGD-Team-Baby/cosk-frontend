@@ -16,7 +16,6 @@ export default function NavBar(props) {
     const backgroundState = props.transparent ? "transparent" : "white"
     const textState = props.lightText ? "light" : "dark"
     let {user} = useGetUserInpormation();
-    console.log(user)
     return (
         <div>
             <Navbar bg={backgroundState} variant={textState} fixed="top" className={shadow}>

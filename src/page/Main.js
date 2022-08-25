@@ -36,7 +36,6 @@ export default function Main() {
                             checked="true"
                             variant="outline-secondary"
                             value="1"
-                            onChange={(e) => console.log("Click 1")}
                         >
                             React
                         </ToggleButton>
@@ -48,7 +47,6 @@ export default function Main() {
                             checked="false"
                             variant="outline-secondary"
                             value="2"
-                            onChange={(e) => console.log("Click 1")}
                         >
                             Python
                         </ToggleButton>
@@ -60,7 +58,6 @@ export default function Main() {
                             variant="outline-secondary"
                             checked="false"
                             value="3"
-                            onChange={(e) => console.log("Click 1")}
                         >
                             Django
                         </ToggleButton>

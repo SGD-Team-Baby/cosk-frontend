@@ -13,13 +13,10 @@ export default function BoardList(props) {
             const result = await instance.get("/post/list", {})
 
                 .then(function (response){
-                    // console.log(response.data);
                     return response
                 })
                 .catch(function (error){
-                    console.log("ERROR");
                     setError(true)
-                    console.log(error)
                     return error.response;
                     // ERROR
                 });
@@ -27,7 +24,6 @@ export default function BoardList(props) {
             if(!completed) {
                 setLoading(false);
                 setData(result.data);
-                console.log(data);
             }
         }
         get();

@@ -7,11 +7,9 @@ export default function useGetPostList({page, postListName}) {
     useEffect(() => {
         instance.get("/post/list", {})
             .then(function (response){
-                // console.log(response.data);
                 setPosts(response.data.data);
                 setTotal(response.data.total)
             })
-
     }, [])
 
     return {posts: posts, total: total}

@@ -87,7 +87,6 @@ export default function Editor() {
             }))
         }
         setBlockChangeFunctionTrigger(!blockChangeFunctionTrigger)
-        // console.log(blocks[index])
     }
 
     useEffect(() => {
