@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {ListGroup} from "react-bootstrap";
 import instance from "../../ConstantValue";
-export default function BoardList(props) {
+export default function BoardList({favo, limitLength}) {
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+    const favorite = favo!==undefined?"":"?favorite=0"
+    
     useEffect(() => {
         let completed = false;
 
         async function get(){
-            const result = await instance.get("/post/list", {})
+            const result = await instance.get("/post/list"+favorite, {})
 
                 .then(function (response){
                     return response
@@ -32,7 +34,7 @@ export default function BoardList(props) {
     }, []);
 
     if(!error && !loading) {
-        let length = props.limitLength || data['data'].length;
+        let length = limitLength || data['data'].length;
 
         return (
             <ListGroup className="rounded-3 shadow-lg mt-4">

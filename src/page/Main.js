@@ -66,7 +66,7 @@ export default function Main() {
 
 
                 <ListGroup className="rounded-3 shadow-lg mt-4">
-                    <BoardList/>
+                    <BoardList limitLength={5}/>
                 </ListGroup>
 
                 <div style={{display: "flex", width: "100%"}}>
@@ -80,34 +80,7 @@ export default function Main() {
                 </div>
 
                 <ListGroup className="rounded-3 shadow-lg mt-4">
-                    <ListGroup.Item className="ps-4">
-                        <h4 className="mt-3">LALALALALALALALA</h4>
-                        <p>내가 LA에 있었던 시절 이것은 내용의 일부일 뿐이다. 그리 긴 내용은 아니지만 잘 들어주길 바란다. 리액트는 어렵다. ㅇㅈ? ㅇ ㅇㅈ </p>
-                        <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="ps-4">
-                        <h4 className="mt-3">제목</h4>
-                        <p>내가 LA에 있었던 시절 이것은 내용의 일부일 뿐이다. 그리 긴 내용은 아니지만 잘 들어주길 바란다. 장고 어렵다. ㅇㅈ? ㅇ ㅇㅈ </p>
-                        <div style={{width:"auto", display: "block"}}>
-                            <p className="text-primary justify-content-end" style={{fontSize: "0.8rem"}}>#Django #Python</p>
-                        </div>
-
-                    </ListGroup.Item>
-                    <ListGroup.Item className="ps-4">
-                        <h4 className="mt-3">제목</h4>
-                        <p>내가 LA에 있었던 시절 이것은 내용의 일부일 뿐이다. 그리 긴 내용은 아니지만 잘 들어주길 바란다. 리액트는 어렵다. ㅇㅈ? ㅇ ㅇㅈ </p>
-                        <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="ps-4">
-                        <h4 className="mt-3">제목</h4>
-                        <p>내가 LA에 있었던 시절 이것은 내용의 일부일 뿐이다. 그리 긴 내용은 아니지만 잘 들어주길 바란다. 리액트는 어렵다. ㅇㅈ? ㅇ ㅇㅈ </p>
-                        <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="ps-4">
-                        <h4 className="mt-3">제목</h4>
-                        <p>내가 LA에 있었던 시절 이것은 내용의 일부일 뿐이다. 그리 긴 내용은 아니지만 잘 들어주길 바란다. 리액트는 어렵다. ㅇㅈ? ㅇ ㅇㅈ </p>
-                        <p className="text-primary" style={{fontSize: "0.8rem"}}>#React</p>
-                    </ListGroup.Item>
+                    <BoardList favo={0} limitLength={5}/>
                 </ListGroup>
 
                 <div style={{display: "flex", width: "100%"}}>
