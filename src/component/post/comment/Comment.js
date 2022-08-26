@@ -12,7 +12,6 @@ export default function Comment({id, username, time, content, comments, allowCom
     const [comment, setComment] = useState("")
     const {user} = useGetUserInpormation();
 
-    if(id===user.id) {
         return (
             <div className="mt-2">
                 <Stack direction="horizontal">
@@ -26,8 +25,13 @@ export default function Comment({id, username, time, content, comments, allowCom
 
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => setShowReportModal(true)}>신고</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setModifyMode(true)}>수정</Dropdown.Item>
-                                <Dropdown.Item onClick={() => onDeleteComment(id)}>삭제</Dropdown.Item>
+                                {
+                                    (user.id===id)&&<Dropdown.Item onClick={() => setModifyMode(true)}>수정</Dropdown.Item>
+                                }
+                                {
+                                    (user.id===id)&&<Dropdown.Item onClick={() => onDeleteComment(id)}>삭제</Dropdown.Item>
+                                }
+
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
@@ -90,15 +94,5 @@ export default function Comment({id, username, time, content, comments, allowCom
                              }}/>
             </div>
         )
-    }
-    return (
-        <div>
-            <ReportModal isComment={false} show={showReportModal} onClose={() => setShowReportModal(false)}
-                         onReport={(isComment, reportType, reportContent) => {
-                             connectReport({id:id, reportType:reportType, reportContent:reportContent})
-                             console.log("게시글", id, "신고 gogo", reportType, reportContent)
-                         }}/>
-        </div>
-    )
 
 }
