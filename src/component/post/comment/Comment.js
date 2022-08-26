@@ -11,7 +11,6 @@ export default function Comment({id, username, time, content, comments, allowCom
     const [showReportModal, setShowReportModal] = useState(false)
     const [comment, setComment] = useState("")
     const {user} = useGetUserInpormation();
-
         return (
             <div className="mt-2">
                 <Stack direction="horizontal">
@@ -26,10 +25,10 @@ export default function Comment({id, username, time, content, comments, allowCom
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => setShowReportModal(true)}>신고</Dropdown.Item>
                                 {
-                                    (user.id===id)&&<Dropdown.Item onClick={() => setModifyMode(true)}>수정</Dropdown.Item>
+                                    (user.name===username)&&<Dropdown.Item onClick={() => setModifyMode(true)}>수정</Dropdown.Item>
                                 }
                                 {
-                                    (user.id===id)&&<Dropdown.Item onClick={() => onDeleteComment(id)}>삭제</Dropdown.Item>
+                                    (user.name===username)&&<Dropdown.Item onClick={() => onDeleteComment(id)}>삭제</Dropdown.Item>
                                 }
 
                             </Dropdown.Menu>
