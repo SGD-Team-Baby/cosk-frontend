@@ -7,6 +7,7 @@ import Comment from "../comment/Comment";
 import React, {useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import ReportModal from "../ReportModal";
+import connectReport from "../../../service/ConnectReport";
 
 export default function PostContent({
                                         showChild,
@@ -140,6 +141,7 @@ export default function PostContent({
 
             <ReportModal isComment={false} show={showReportModal} onClose={() => setShowReportModal(false)}
                          onReport={(isComment, reportType, reportContent) => {
+                             connectReport({id:id, reportType:reportType, reportContent:reportContent})
                              console.log("게시글", id, "신고 gogo", reportType, reportContent)
                          }}/>
         </div>
