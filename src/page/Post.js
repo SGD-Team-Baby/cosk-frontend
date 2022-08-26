@@ -10,6 +10,9 @@ import {useRef, useState} from "react";
 import sendImage from "../service/image/SendImage";
 import clickFavorite from "../service/post/FavoriteClick";
 import {comment} from "@uiw/react-md-editor/lib/commands/comment";
+import DeletePost from "../service/post/DeletePost";
+import DeleteComment from "../service/post/DeleteComment";
+import ModifyComment from "../service/post/ModifyComment";
 
 
 
@@ -27,6 +30,8 @@ export default function Post() {
     const [screenshot, takeScreenshot, error] = useScreenshot()
     const screenshotRef = useRef()
     const [modalShow, setModalShow] = useState(false)
+    const [contentMessage, setContentMessage] = useState("");
+    const [commentMessage, setCommentMessage] = useState("");
 
     return (
         <div ref={screenshotRef}>
@@ -56,12 +61,15 @@ export default function Post() {
                         }
                     }}
                     onDeletePost={(postId) => {
+                        DeletePost(postId)
                         console.log(postId)
                     }}
                     onDeleteComment={(commentId) => {
+                        DeleteComment(commentId)
                         console.log(commentId)
                     }}
                     onModifyComment={(commentId, value) => {
+                        ModifyComment(commentId, value)
                         console.log(commentId, value)
                     }}
                 onShareClick={() => setModalShow(true)}/>

@@ -112,7 +112,8 @@ export default function PostContent({
                                             onNewComment(postId, commentId, comment)
                                         }}
                                         onDeletePost={onDeletePost}
-                                        onDeletecomment={onDeleteComment}
+                                        onDeleteComment={onDeleteComment}
+                                        onModifyComment={onModifyComment}
                                         showChild={false}
                                     />
                                     <div className="border-top my-3"></div>
