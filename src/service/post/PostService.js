@@ -35,7 +35,6 @@ export default function useGetPost(postId) {
 
     if(!loading && !error){
         const user = data.user;
-        console.log(user)
         return (
             {
                 username:user.name,
