@@ -4,6 +4,9 @@ import useGetPost from "../service/post/PostService";
 import {useParams} from "react-router-dom";
 import PostContent from "../component/post/blocks/PostContent";
 import uploadComment from "../service/uploadComment";
+import ShareModal from "../component/post/ShareModal";
+import {useScreenshot} from "../util/Screenshot";
+import {useRef, useState} from "react";
 
 
 /**
@@ -16,8 +19,13 @@ export default function Post() {
 
     const params = useParams()
     const post = useGetPost(params.id)
+
+    const [screenshot, takeScreenshot, error] = useScreenshot()
+    const screenshotRef = useRef()
+    const [modalShow, setModalShow] = useState(false)
+
     return (
-        <div>
+        <div ref={screenshotRef}>
             <NavBar
                 transparent={false}
                 lightText={false}
@@ -39,8 +47,15 @@ export default function Post() {
                         if (commentId === -1) {
                             uploadComment(postId, str)
                         }
-                    }}/>
+                    }}
+                onShareClick={() => setModalShow(true)}/>
             </div>
+
+            <ShareModal show={modalShow} onClose={() => setModalShow(false)} onShare={(email) => {
+                takeScreenshot(screenshotRef.current).then(r =>
+                    console.log(email, r)
+                )
+            }}/>
         </div>
     )
 }

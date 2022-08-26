@@ -4,9 +4,8 @@ import MarkdownTextBlock from "./normal/MarkdownTextBlock";
 import ImageBlock from "./normal/ImageBlock";
 import CodeBlock from "./normal/CodeBlock";
 import Comment from "../comment/Comment";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import ShareModal from "../ShareModal";
 
 export default function PostContent({
                                         showChild,
@@ -22,15 +21,16 @@ export default function PostContent({
                                         childPosts,
                                         comments,
                                         onNewComment,
-                                        onFavoritesClick
+                                        onFavoritesClick,
+                                        onShareClick,
+                                        ref
                                     }) {
 
     const navigate = useNavigate()
-    const [modalShow, setModalShow] = useState(false)
     const [comment, setComment] = useState("")
 
     return (
-        <div>
+        <div ref={ref}>
             <Stack direction="horizontal">
                 <PostInfo title={title} name={username} time={time} favorites={favorites} visit={visit}
                           onFavoritesClick={onFavoritesClick}/>
@@ -38,7 +38,7 @@ export default function PostContent({
                     showChild && <div className="ms-auto">
                         <span className="material-symbols-outlined text-secondary"
                               style={{fontSize: "110%", cursor: "pointer"}}
-                        onClick={() => setModalShow(true)}>ios_share</span>
+                        onClick={onShareClick}>ios_share</span>
                     </div>
                 }
 
@@ -121,10 +121,6 @@ export default function PostContent({
                     }
                 </div>
             }
-
-            <ShareModal show={modalShow} onClose={() => setModalShow(false)} onShare={() => {
-                console.log("여기에 api 호출")
-            }}/>
         </div>
     )
 }
