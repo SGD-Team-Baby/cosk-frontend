@@ -1,11 +1,12 @@
 import PostInfo from "./normal/PostInfo";
-import {Button, Stack} from "react-bootstrap";
+import {Button, Dropdown, Stack} from "react-bootstrap";
 import MarkdownTextBlock from "./normal/MarkdownTextBlock";
 import ImageBlock from "./normal/ImageBlock";
 import CodeBlock from "./normal/CodeBlock";
 import Comment from "../comment/Comment";
 import React, {useRef, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import ReportModal from "../ReportModal";
 
 export default function PostContent({
                                         showChild,
@@ -26,7 +27,7 @@ export default function PostContent({
                                         ref
                                     }) {
 
-    const navigate = useNavigate()
+    const [showReportModal, setShowReportModal] = useState(false)
     const [comment, setComment] = useState("")
 
     return (
@@ -35,10 +36,21 @@ export default function PostContent({
                 <PostInfo title={title} name={username} time={time} favorites={favorites} visit={visit}
                           onFavoritesClick={onFavoritesClick}/>
                 {
-                    showChild && <div className="ms-auto">
-                        <span className="material-symbols-outlined text-secondary"
-                              style={{fontSize: "110%", cursor: "pointer"}}
-                        onClick={onShareClick}>ios_share</span>
+                    <div className="ms-auto">
+                        <Stack direction="horizontal" gap="3">
+                            {showChild && <span className="material-symbols-outlined text-secondary"
+                                                style={{fontSize: "110%", cursor: "pointer"}}
+                                                onClick={onShareClick}>ios_share</span>
+                            }
+                            <Dropdown>
+                                <Dropdown.Toggle className="btn-sm text-secondary bg-white" variant="success">
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => setShowReportModal(true)}>신고</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Stack>
                     </div>
                 }
 
@@ -121,6 +133,11 @@ export default function PostContent({
                     }
                 </div>
             }
+
+            <ReportModal isComment={false} show={showReportModal} onClose={() => setShowReportModal(false)}
+                         onReport={(isComment, reportType, reportContent) => {
+                             console.log("게시글", id, "신고 gogo", reportType, reportContent)
+                         }}/>
         </div>
     )
 }

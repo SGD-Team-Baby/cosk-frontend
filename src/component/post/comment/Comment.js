@@ -1,13 +1,28 @@
 import React, {useState} from "react";
-import {Button} from "react-bootstrap";
+import {Button, Dropdown, Stack} from "react-bootstrap";
+import ReportModal from "../ReportModal";
 
 export default function Comment({id, username, time, content, comments, allowComment, onNewComment}) {
     const [commentOpened, setCommentOpened] = useState(false)
+    const [showReportModal, setShowReportModal] = useState(false)
     const [comment, setComment] = useState("")
 
     return (
         <div className="mt-2">
-            <div><span className="fw-bold">{username}</span> <span style={{fontSize: "0.9rem"}}>{time}</span></div>
+            <Stack direction="horizontal">
+                <div><span className="fw-bold">{username}</span> <span style={{fontSize: "0.9rem"}}>{time}</span></div>
+
+                <div className="ms-auto">
+                    <Dropdown>
+                        <Dropdown.Toggle className="btn-sm text-secondary bg-white" variant="success">
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={() => setShowReportModal(true)}>신고</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </div>
+            </Stack>
             <div>{content}</div>
             {
                 allowComment ?
@@ -46,6 +61,11 @@ export default function Comment({id, username, time, content, comments, allowCom
                 )
             })
             }
+
+            <ReportModal isComment={true} show={showReportModal} onClose={() => setShowReportModal(false)}
+                         onReport={(isComment, reportType, reportContent) => {
+                             console.log("댓글", id, "신고 gogo", reportType, reportContent)
+                         }}/>
         </div>
     )
 }
