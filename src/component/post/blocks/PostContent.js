@@ -87,7 +87,7 @@ export default function PostContent({
                                     username={post.user.name}
                                     time={post.time}
                                     tags={post.tags}
-                                    favorites={post.favorites}
+                                    favorites={post.favorite}
                                     contents={post.contents}
                                     childPosts={post.child}
                                     comments={post.comments}
