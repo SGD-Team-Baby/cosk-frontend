@@ -82,17 +82,17 @@ export default function PostContent({
                             childPosts.map((post) => {
                                 return <div>
                                     <PostContent
-                                        id={id}
-                                        title={post.title}
-                                        username={post.username}
-                                        time={post.time}
-                                        tags={post.tags}
-                                        favorites={post.favorites}
-                                        contents={post.contents}
-                                        childPosts={post.child}
-                                        comments={post.comments}
-                                        showChild={false}
-                                    />
+                                    id={id}
+                                    title={post.title}
+                                    username={post.user.name}
+                                    time={post.time}
+                                    tags={post.tags}
+                                    favorites={post.favorites}
+                                    contents={post.contents}
+                                    childPosts={post.child}
+                                    comments={post.comments}
+                                    showChild={false}
+                                />
                                     <div className="border-top my-3"></div>
                                 </div>
                             })
