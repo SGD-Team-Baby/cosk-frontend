@@ -8,8 +8,9 @@ import ShareModal from "../component/post/ShareModal";
 import {useScreenshot} from "../util/Screenshot";
 import {useRef, useState} from "react";
 import sendImage from "../service/image/SendImage";
-import useFavoriteClick from "../service/post/FavoriteClick";
 import clickFavorite from "../service/post/FavoriteClick";
+import {comment} from "@uiw/react-md-editor/lib/commands/comment";
+
 
 
 /**
@@ -53,6 +54,12 @@ export default function Post() {
                         if (commentId === -1) {
                             uploadComment(postId, str)
                         }
+                    }}
+                    onDeletePost={(postId) => {
+                        console.log(postId)
+                    }}
+                    onDeleteComment={(commentId) => {
+                        console.log(commentId)
                     }}
                 onShareClick={() => setModalShow(true)}/>
             </div>

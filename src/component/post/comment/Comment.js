@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Button, Dropdown, Stack} from "react-bootstrap";
 import ReportModal from "../ReportModal";
 
-export default function Comment({id, username, time, content, comments, allowComment, onNewComment}) {
+export default function Comment({id, username, time, content, comments, allowComment, onNewComment, onDeleteComment}) {
     const [commentOpened, setCommentOpened] = useState(false)
     const [showReportModal, setShowReportModal] = useState(false)
     const [comment, setComment] = useState("")
@@ -19,6 +19,7 @@ export default function Comment({id, username, time, content, comments, allowCom
 
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => setShowReportModal(true)}>신고</Dropdown.Item>
+                            <Dropdown.Item onClick={() => onDeleteComment(id)}>삭제</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -56,6 +57,7 @@ export default function Comment({id, username, time, content, comments, allowCom
                             comments={[]}
                             allowComment={false}
                             onNewComment={onNewComment}
+                            onDeleteComment={onDeleteComment}
                         />
                     </div>
                 )

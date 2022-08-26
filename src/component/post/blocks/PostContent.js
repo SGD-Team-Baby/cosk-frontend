@@ -25,6 +25,8 @@ export default function PostContent({
                                         onNewComment,
                                         onFavoritesClick,
                                         onShareClick,
+                                        onDeletePost,
+                                        onDeleteComment,
                                         ref
                                     }) {
 
@@ -49,6 +51,7 @@ export default function PostContent({
 
                                 <Dropdown.Menu>
                                     <Dropdown.Item onClick={() => setShowReportModal(true)}>신고</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => onDeletePost(id)}>삭제</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Stack>
@@ -95,17 +98,23 @@ export default function PostContent({
                             childPosts.map((post) => {
                                 return <div>
                                     <PostContent
-                                    id={id}
-                                    title={post.title}
-                                    username={post.user.name}
-                                    time={post.time}
-                                    tags={post.tags}
-                                    favorites={post.favorite}
-                                    contents={post.contents}
-                                    childPosts={post.child}
-                                    comments={post.comments}
-                                    showChild={false}
-                                />
+                                        id={post.id}
+                                        title={post.title}
+                                        username={post.user.name}
+                                        time={post.time}
+                                        tags={post.tags}
+                                        favorites={post.favorite}
+                                        contents={post.contents}
+                                        childPosts={post.child}
+                                        comments={post.comments}
+                                        onNewComment={(postId, commentId, comment) => {
+                                            console.log("답글에 머멋글")
+                                            onNewComment(postId, commentId, comment)
+                                        }}
+                                        onDeletePost={onDeletePost}
+                                        onDeletecomment={onDeleteComment}
+                                        showChild={false}
+                                    />
                                     <div className="border-top my-3"></div>
                                 </div>
                             })
@@ -129,6 +138,7 @@ export default function PostContent({
                                 content={comment.text}
                                 allowComment={true}
                                 onNewComment={(commentId) => onNewComment(id, commentId, comment)}
+                                onDeleteComment={onDeleteComment}
                             />
                         })
                     }
