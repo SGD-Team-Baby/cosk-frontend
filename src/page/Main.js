@@ -66,7 +66,7 @@ export default function Main() {
 
 
                 <ListGroup className="rounded-3 shadow-lg mt-4">
-                    <BoardList/>
+                    <BoardList limitLength={5}/>
                 </ListGroup>
 
                 <div style={{display: "flex", width: "100%"}}>
@@ -80,7 +80,7 @@ export default function Main() {
                 </div>
 
                 <ListGroup className="rounded-3 shadow-lg mt-4">
-                    <BoardList favo={0}/>
+                    <BoardList favo={0} limitLength={5}/>
                 </ListGroup>
 
                 <div style={{display: "flex", width: "100%"}}>
