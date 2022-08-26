@@ -25,6 +25,8 @@ export default function PostContent({
                                         onNewComment,
                                         onFavoritesClick,
                                         onShareClick,
+                                        onDeletePost,
+                                        onDeleteComment,
                                         ref
                                     }) {
 
@@ -49,6 +51,7 @@ export default function PostContent({
 
                                 <Dropdown.Menu>
                                     <Dropdown.Item onClick={() => setShowReportModal(true)}>신고</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => onDeletePost(id)}>삭제</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Stack>
@@ -95,7 +98,7 @@ export default function PostContent({
                             childPosts.map((post) => {
                                 return <div>
                                     <PostContent
-                                        id={id}
+                                        id={post.id}
                                         title={post.title}
                                         username={post.user.name}
                                         time={post.time}
@@ -108,6 +111,8 @@ export default function PostContent({
                                             console.log("답글에 머멋글")
                                             onNewComment(postId, commentId, comment)
                                         }}
+                                        onDeletePost={onDeletePost}
+                                        onDeletecomment={onDeleteComment}
                                         showChild={false}
                                     />
                                     <div className="border-top my-3"></div>
@@ -133,6 +138,7 @@ export default function PostContent({
                                 content={comment.text}
                                 allowComment={true}
                                 onNewComment={(commentId) => onNewComment(id, commentId, comment)}
+                                onDeleteComment={onDeleteComment}
                             />
                         })
                     }

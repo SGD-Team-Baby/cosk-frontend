@@ -25,8 +25,9 @@ function App() {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/post/:id" element={<Post />} />
                     <Route path="/posts/:page" element={<PostList postListName="전체 게시글"/>} />
-                    <Route path="/edit" element={<Editor />} />
-                    <Route path="/edit/:id" element={<Editor />} />
+                    <Route path="/edit" element={<Editor modify={false}/>} />
+                    <Route path="/edit/:id" element={<Editor modify={false}/>} />
+                    <Route path="/post/edit/:id" element={<Editor modify={true}/>} />
                     <Route path="/user/:username" element={<User />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
