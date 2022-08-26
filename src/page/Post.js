@@ -8,7 +8,9 @@ import ShareModal from "../component/post/ShareModal";
 import {useScreenshot} from "../util/Screenshot";
 import {useRef, useState} from "react";
 import sendImage from "../service/image/SendImage";
+import clickFavorite from "../service/post/FavoriteClick";
 import {comment} from "@uiw/react-md-editor/lib/commands/comment";
+
 
 
 /**
@@ -46,7 +48,7 @@ export default function Post() {
                     childPosts={post.child}
                     comments={post.comments}
                     onFavoritesClick={() => {
-                        console.log("조와용")
+                        clickFavorite({postId:params.id});
                     }}
                     onNewComment={(postId, commentId, str) => {
                         if (commentId === -1) {
