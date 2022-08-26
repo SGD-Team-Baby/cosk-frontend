@@ -7,6 +7,7 @@ import uploadComment from "../service/uploadComment";
 import ShareModal from "../component/post/ShareModal";
 import {useScreenshot} from "../util/Screenshot";
 import {useRef, useState} from "react";
+import sendImage from "../service/image/SendImage";
 
 
 /**
@@ -43,6 +44,9 @@ export default function Post() {
                     contents={post.contents}
                     childPosts={post.child}
                     comments={post.comments}
+                    onFavoritesClick={() => {
+                        console.log("조와용")
+                    }}
                     onNewComment={(postId, commentId, str) => {
                         if (commentId === -1) {
                             uploadComment(postId, str)
@@ -53,7 +57,7 @@ export default function Post() {
 
             <ShareModal show={modalShow} onClose={() => setModalShow(false)} onShare={(email) => {
                 takeScreenshot(screenshotRef.current).then(r =>
-                    console.log(email, r)
+                    sendImage({email:email, image:r})
                 )
             }}/>
         </div>
