@@ -59,6 +59,9 @@ export default function Post() {
                     onDeleteComment={(commentId) => {
                         console.log(commentId)
                     }}
+                    onModifyComment={(commentId, value) => {
+                        console.log(commentId, value)
+                    }}
                 onShareClick={() => setModalShow(true)}/>
             </div>
 

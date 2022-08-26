@@ -26,14 +26,14 @@ export default function PostContent({
                                         onShareClick,
                                         onDeletePost,
                                         onDeleteComment,
-                                        ref
+                                        onModifyComment
                                     }) {
 
     const [showReportModal, setShowReportModal] = useState(false)
     const [comment, setComment] = useState("")
 
     return (
-        <div ref={ref}>
+        <div>
             <Stack direction="horizontal">
                 <PostInfo title={title} name={username} time={time} favorites={favorites} visit={visit}
                           onFavoritesClick={onFavoritesClick}/>
@@ -138,6 +138,7 @@ export default function PostContent({
                                 allowComment={true}
                                 onNewComment={(commentId) => onNewComment(id, commentId, comment)}
                                 onDeleteComment={onDeleteComment}
+                                onModifyComment={onModifyComment}
                             />
                         })
                     }

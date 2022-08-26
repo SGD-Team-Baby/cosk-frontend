@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import {Button, Dropdown, Stack} from "react-bootstrap";
 import ReportModal from "../ReportModal";
 
-export default function Comment({id, username, time, content, comments, allowComment, onNewComment, onDeleteComment}) {
+export default function Comment({id, username, time, content, comments, allowComment, onNewComment, onDeleteComment, onModifyComment}) {
+    const [isModify, setModifyMode] = useState(false)
+    const [contentState, setContent] = useState(content)
     const [commentOpened, setCommentOpened] = useState(false)
     const [showReportModal, setShowReportModal] = useState(false)
     const [comment, setComment] = useState("")
@@ -19,12 +21,23 @@ export default function Comment({id, username, time, content, comments, allowCom
 
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={() => setShowReportModal(true)}>신고</Dropdown.Item>
+                            <Dropdown.Item onClick={() => setModifyMode(true)}>수정</Dropdown.Item>
                             <Dropdown.Item onClick={() => onDeleteComment(id)}>삭제</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
             </Stack>
-            <div>{content}</div>
+            <div>{
+                isModify ?
+                    <div className="w-100" >
+                        <input className="w-100" value={contentState} onChange={(e) => setContent(e.target.value)}/>
+                        <Button className="btn-primary text-white mt-2" onClick={() => {
+                            setModifyMode(false)
+                            onModifyComment(id, contentState)
+                        }}>수정</Button>
+                    </div>
+                    : contentState
+            }</div>
             {
                 allowComment ?
                     <div className="pt-2 pb-2 text-primary" onClick={e => {
@@ -58,6 +71,7 @@ export default function Comment({id, username, time, content, comments, allowCom
                             allowComment={false}
                             onNewComment={onNewComment}
                             onDeleteComment={onDeleteComment}
+                            onModifyComment={onModifyComment}
                         />
                     </div>
                 )
