@@ -35,6 +35,7 @@ export default function useGetPost(postId) {
 
     if(!loading && !error){
         const user = data.user;
+        console.log(user)
         return (
             {
                 username:user.name,
@@ -42,6 +43,7 @@ export default function useGetPost(postId) {
                 title:data.title,
                 favorites: data.favorite,
                 time: data.time,
+                visit: data.visit,
                 contents: data.contents,
                 comments: data.comments
             }
