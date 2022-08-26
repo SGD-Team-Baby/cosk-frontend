@@ -71,7 +71,7 @@ export default function PostContent({
                                     <PostContent
                                     id={id}
                                     title={post.title}
-                                    username={post.username}
+                                    username={post.user.name}
                                     time={post.time}
                                     tags={post.tags}
                                     favorites={post.favorites}
