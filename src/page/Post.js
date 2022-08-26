@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../component/NavBar";
 import useGetPost from "../service/post/PostService";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import PostContent from "../component/post/blocks/PostContent";
 import uploadComment from "../service/uploadComment";
 import ShareModal from "../component/post/ShareModal";
@@ -15,7 +15,6 @@ import DeleteComment from "../service/post/DeleteComment";
 import ModifyComment from "../service/post/ModifyComment";
 
 
-
 /**
  * title="asdf"
  * contents
@@ -25,6 +24,7 @@ import ModifyComment from "../service/post/ModifyComment";
 export default function Post() {
 
     const params = useParams()
+    const navigate = useNavigate()
     const post = useGetPost(params.id)
 
     const [screenshot, takeScreenshot, error] = useScreenshot()
@@ -59,14 +59,17 @@ export default function Post() {
                         if (commentId === -1) {
                             uploadComment(postId, str)
                         }
+                        window.location.reload();
                     }}
                     onDeletePost={(postId) => {
                         DeletePost(postId)
                         console.log(postId)
+                        navigate.goBack()
                     }}
                     onDeleteComment={(commentId) => {
                         DeleteComment(commentId)
                         console.log(commentId)
+                        window.location.reload();
                     }}
                     onModifyComment={(commentId, value) => {
                         ModifyComment(commentId, value)
